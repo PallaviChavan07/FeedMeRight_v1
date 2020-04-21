@@ -1,0 +1,31 @@
+% Background chapter continued..
+
+\section{Similarity Methods}
+There are several methods available to calculate similarity score.
+\\
+
+\subsection{Cosine Similarity}
+In this method, cosine of the angle between profile vector and item vector is calculated. Consider A and B are profile vector and item vector respectively, the similarity between them can be calculated as per below formula:
+\\
+
+\begin{equation}
+sim(A,B) = cos(\theta) =\frac {A.B}{\parallel A \parallel \parallel B \parallel}
+\end{equation}
+
+\noindent The value of cosine angle ranges between -1 to 1. Lesser the angle, less distance hence more similarity as cos(0) = 1. Then items are arranged in descending order and recommended to user
+\\
+\subsection{Euclidean Distance}
+If we plot similar items in n-dimensional space, then they will fall under close proximity. In that case, we can calculate distance between items with Euclidean distance formula which is given by:
+\\
+\begin{equation}
+Euclidean Distance = \sqrt{(x_1 - y_1)^2 + ... + (x_n - y_n)^2}
+\end{equation}
+
+
+\subsection{Pearson’s Correlation}
+Person’s correlation helps in finding correlation between similar items. Correlation on higher side implies more similarity. It can be calculated as below:
+\\
+\begin{equation}
+sim(u,v) = \frac{\sum (r_{ui} - \bar{r}_u) (r_{vi} - \bar{r}_v )}{\sqrt{(\sum (r_{ui} - \bar{r}_u))^2} \sqrt{(\sum (r_{vi} - \bar{r}_v )^2}}
+\end{equation}
+\\
