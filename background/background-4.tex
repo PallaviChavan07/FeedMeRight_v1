@@ -32,13 +32,54 @@ Precision = \frac{TP}{TP + FP}
 Based on \autoref{confusion_matrix}, recall is calculated as the ratio of relevant items from recommended items to the number of all relevant items. It is given in \autoref{eq:recall}. 
 
 \begin{equation}
-Pecall = \frac{TP}{TP + FN} 
+Recall = \frac{TP}{TP + FN} 
 \label{eq:recall}
 \end{equation}
 
---------- To DO ---------
-\subsection{Root Mean Squared Error (RMSE)}
---------- To DO ---------
+Larger value of recall and precision implies better recommendations.
+
+
+
+\subsection{Mean Absolute Error (MAE)}
+Mean absolute error used to calculate the average deviation or error generated from predicted ratings and actual ratings \cite{26}.
+
+\begin{equation}
+MAE = \frac{1}{n} \sum_{i=1}^{n}{\vert{Predicted_i - Actual_i} \vert}
+\label{eq:mae}
+\end{equation}
+Where, \\ 
+$Predicted_i$ \textsf{ denotes predicted ratings given by user to the item} $i.$ \\
+$Actual_i$ \textsf{ denotes actual ratings given by user to the item } $i.$ \\
+$n$ \textsf{denotes number of items.}
+
+\noindent With this formula, MAE can calculate general performance of recommender systems but to compare engines with different rating scale, we can normalize MAE by dividing by the mean MAE value as shown in \autoref{eq:nmae}. 
+
+\begin{equation}
+NMAE = \frac{MAE} {Rating_{max} - Rating_{min}}
+\label{eq:nmae}
+\end{equation}
+
+
+\subsection{Root Mean Square Error (RMSE)}
+RMSE is a variation of MAE. It also measures the average magnitude of the error. But it puts more weight on large errors as shown in \autoref{eq:rmse}. RMSE can be defines as square root of the average of squared deviations between predicted ratings and real ratings.
+
+\begin{equation}
+RMSE = \sqrt{ \frac{1}{n} \sum_{i=1}^{n}{({Predicted_i - Actual_i} ) ^ {2}}}
+\label{eq:rmse}
+\end{equation}
+Where, \\
+$Predicted_i$ \textsf{ denotes predicted ratings given by user to the item} $i.$ \\
+$Actual_i$ \textsf{ denotes actual ratings given by user to the item } $i.$ \\
+$n$ \textsf{denotes number of items.}
+
+\noindent Normalized RMSE is given in \autoref{eq:nrmse}
+\begin{equation}
+NRMSE = \frac{RMSE} {Rating_{max} - Rating_{min}}
+\label{eq:nrmse}
+\end{equation}
+
+
+
 \subsection{Mean Reciprocal Rank}
 --------- To DO ---------
 \subsection{MAP at k (Mean Average Precision at cutoff k)}
