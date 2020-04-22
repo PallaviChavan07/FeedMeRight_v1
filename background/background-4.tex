@@ -16,7 +16,7 @@ Recall and precision are most commonly used metrics to evaluate recommendation e
 	\label{fig:confusion_matrix}
 \end{figure}
 
-Where\\
+\noindent Where\\
 TP denotes True Positive represents all relevant items are recommended by the system.\\
 TN denotes True Negative represents all irrelevant items are correctly not recommended by the system.  \\
 FP denotes False Positive represents all irrelevant items which are
@@ -81,8 +81,34 @@ NRMSE = \frac{RMSE} {Rating_{max} - Rating_{min}}
 
 
 \subsection{Mean Reciprocal Rank}
---------- To DO ---------
-\subsection{MAP at k (Mean Average Precision at cutoff k)}
---------- To DO ---------
+
+Mean Reciprocal Rank is one of the rank-aware evaluation metrics.
+It is retrieval measure which calculates the reciprocal of the rank at which the first relevant document was recommended \cite{27}.
+From the list of generated recommendations, it finds the rank of first relevant recommended item and computes the reciprocal of that rank. It can be calucluted as shown in \autoref{eq:mrr}
+
+\begin{equation}
+MRR(O, U) = \frac{1}{\vert U \vert} \sum_{u \in \epsilon} \frac{1} {k_{u}}
+\label{eq:mrr}
+\end{equation}
+\noindent Where, \\
+$k_{u}$ denotes first relevant recommended item for user u. \\
+$U$  denotes number of users. \\
+MRR focuses on the first relevant item of the recommended list.HIgher reciprocal rank implies better recommendation engine.
+
+
+\subsection{Mean Average Precision at cutoff k (MAP at k)}
+MAP at k considers the subset of list recommended by the system while measuring precision. It does not concern about ordering the items in the list. For each user for each relevant item it computes the precision of list through that item. After that it average sub list precisions. Mathematically it is show in \autoref{eq:map_at_k}
+
+\begin{equation}
+MAP_{i} = \frac{1}{\vert R_{i} \vert} \sum_{k=1}^{\vert R_{i} \vert} { P( R_{i}[k]) }
+\label{eq:map_at_k}
+\end{equation}
+
+\noindent Where, \\
+$R_{i}$ denotes rating for item $i$. \\
+$k$ denotes rank from 1 to k.\\
+$P$ denotes precision of first relevant item.
+
+\noindent Higher mean precision value implies correct recommendations.
 \subsection{NDCG (Normalized Discounted Cumulative Gain)}
 --------- To DO ---------
