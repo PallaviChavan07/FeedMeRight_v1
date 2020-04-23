@@ -1,5 +1,5 @@
 \chapter{Background}
-\section{Data Collection and Information Filtering}
+\section{Data Collection and Filtering}
 \subsection{BigData}
 The standards set by the World Wide Web consortium, formed in 1994, has led to large amounts of information sharing between the users and the hosts. As the users data grows, more hosts are required to sustain the growth. This growth can be viewed from the figure \autoref{fig:bigdata}.
 \\
@@ -13,7 +13,7 @@ The standards set by the World Wide Web consortium, formed in 1994, has led to l
 \noindent To make any customer experience best, some of the ways recommendation technology is used to make it more personalize. These systems can perform well based on the large amount of data. Bigdata is a driving force behind recommendation engines.
 To make this data useful, applications need to collect data, filter data in specific patterns from which we will get useful information. 
 
-\subsection{Data Collection And Storage}
+\subsection{Data Collection}
 
 Data collection phase is foundation of accuracy of recommendation engine. It is helpful to generate user profile or model for the predictions. To well construct user profile, recommendation engine rely on different types of inputs such as explicit feedback which explicitly specified by user to notify user's interest in item or implicit feedback by understanding user preferences with user interaction with the system \cite{34}. 
 
@@ -24,11 +24,11 @@ The application normally prompts the user through user interface to provide feed
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{explicit1}
-	\caption{Explicit Data}
+	\caption{Explicit Data \cite{36}}
 	\label{fig:explicit}
 \end{figure}
 
-Although explicit feedback requires more efforts from the user, it is still reliable data as it does not require any extraction of preferences and it maintains transparency into recommendation process \cite{35}. 
+\noindent Although explicit feedback requires more efforts from the user, it is still reliable data as it does not require any extraction of preferences and it maintains transparency into recommendation process \cite{35}. 
  
 \subsubsection{Implicit Data}
 
@@ -36,18 +36,24 @@ The application tries to understand more about user's preferences by monitoring 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{implicit}
-	\caption{Implicit Data}
+	\caption{Implicit Data \cite{36}}
 	\label{fig:implicit}
 \end{figure}
 
-Although implicit feedback does not require more efforts from user, it is less accurate.\\
-
-Explicit and implicit data collection methods are used for building online recommendation system. In this paper we are working on offline data. When we need to work on offline data, we need to gather data with different techniques. \\
-Information Gathering involves web crawling, document processing, indexing and queryprocessing. A crawler processes all URLs via techniques like breadth-first search and depth-first search and stores the web servers response for each URL. The documents retrieved are then processed in order for its meta-data and to remove any noisy data. Data indexing is then applied so that retrieval and processing of extracted data is quicker.
+\noindent Although implicit feedback does not require more efforts from user, it is less accurate.\\
+\\
+Collecting data which is required to build recommendation system is information collection phase. Explicit and implicit data collection methods are used for building online recommendation system. In this paper we are working on offline data. When we will be working on offline data. Different techniques are involved in collecting offline data. \\
+Information Gathering involves web crawling, document processing, indexing and queryprocessing. A crawler processes all URLs via techniques like breadth-first search and depth-first search and stores the web servers response for each URL. The documents retrieved are then processed in order for its meta-data and to remove any noisy data. Data indexing is then applied so that retrieval and processing of extracted data is quicker. 
 
 
 \subsection{Information Filtering}
 
 When a user requests information, it is treated as a query in the form of keywords and is applied on the indexed data. The objective of the query processor is to return most relevant documents to the user.
-
-Filtering is a key component to retrieving adequate information per user preferences or user profile. User behavior is studied from past user profiles activities which helps to filter out any irrelevant data and provide apt suggestions pertaining to current needs. Part of information filtering that tries to predict a user's preference is known as a recommender system.
+\\
+\noindent Filtering is a key component to retrieving adequate information per user preferences or user profile. User behavior is studied from past user profiles activities which helps to filter out any irrelevant data and provide apt suggestions pertaining to current needs. It is considered as a learning phase of the system. Part of information filtering that tries to predict a user's preference. This is a recommendation phase. \autoref{fig:reco_phases} shows the recommendation phases.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{reco_phases}
+	\caption{Recommendation Phases \cite{33}}
+	\label{fig:reco_phases}
+\end{figure}

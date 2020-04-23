@@ -19,7 +19,7 @@ A recommender system is an Information Filtering (IF) system that provides or su
 \end{figure}
 
 
-As shown in \autoref{fig:recommender_techniques}, traditionally there are two basic models of recommender systems. \begin{itemize} \item Content based filtering \item Collaborative filtering \end{itemize}
+\noindent As shown in \autoref{fig:recommender_techniques}, traditionally there are two basic models of recommender systems. \begin{itemize} \item Content Based Filtering \item Collaborative Filtering \item Hybrid Filtering \end{itemize}
 In next section we will discuss commonly used methods.
 \pagebreak
 
@@ -36,34 +36,35 @@ In Content based method algorithm, user preference is considered based on item d
 
 \noindent In this algorithm each user's information can be stored in vector form which contains past behavior of the user. This vector is known as profile vector or user profile. All the information about item is stored in item vector / item profile which contains all the details about item specific attributes. Based on similarity score between user profile and item profile most relevant items are recommended to user. 
 \\
-Advantages of content-based recommenders are – 
+\textbf{ Advantages of content-based recommenders }
 \\
 Content-based recommender systems are heavily reliable on the contents of the items that have been rated by the user. So, while making recommendations, this approach would consider user’s taste and accordingly recommend an item that matches user’s preferences. Generally, most popular items dominate less popular items. But this approach will not miss less popular item if it matches the user’s unique taste \cite{6}.
 \\
-Disadvantages of content-based recommenders
+\textbf{Disadvantages of content-based recommenders}
 \\
 User profiles are generated based on rated items. But for any new user who has not rated any items yet, user profile will be empty. In that case, recommending perfect item that matches to user’s taste is difficult as system does not have user taste information. This problem is known as cold start. Also, to understand each items feature, system needs to examine content of every item. Therefore if number of items rises quickly, performance of the system decreases \cite{6}.  
 \\
 
 \subsection{Collaborative Filtering}
-Collaborative filtering uses other users’ behavior in the system to predict and recommend items. It depends on user’s contribution such as ratings, reviews which considered as filter for user preference information. The fundamental idea of collaborative filtering is, it selects other users opinions and aggregate in such way that it provides prediction for active user based on his preferences \cite{7}. 
-\\The main source of input for this algorithm is in the form of matrix of collected user-item ratings. Based on this input it provides recommendations as an output. The first step of output is to predict ratings for items that user may like. Second step is to recommend a list of top rated items as top-N items.
+Collaborative filtering uses other users behavior in the system to predict and recommend items. It depends on user's contribution such as ratings, reviews which considered as filter for user preference information. The fundamental idea of collaborative filtering is, it selects other users opinions and aggregate in such way that it provides prediction for active user based on his preferences \cite{7}. 
+\\The main source of input for this algorithm is in the form of matrix of collected user-item ratings. Based on this input it provides recommendations as an output. The first step of output is to predict ratings for items that user may like. Prediction is a numerical that represents predicted score of specific item for specific user. Second step is to recommend a list of top rated items as top-N items. \autoref{fig:collaborative_process} highlights the collaborative filtering process.
 \\
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{collaborative_filtering}
-	\caption{Collaborative Filtering \cite{8}}
-	\label{fig:collaborative_filtering}
+	\includegraphics[width=0.9\linewidth]{collaborative_process}
+	\caption{Collaborative Filtering Process \cite{33}}
+	\label{fig:collaborative_process}
 \end{figure}
 
 
-Collaborative Filtering is broadly divided into 2 categories \cite{11}. 
+\noindent Collaborative Filtering technique is broadly divided into 2 categories \cite{11}. 
 \\
-$1.$ Memory-based CF
-\\
-$2.$ Model-based CF
-\\
+\begin{itemize}
+\item Memory-based CF
+\item Model-based CF
+\end{itemize}
+
 \subsubsection{A. Memory-Based (user based)}
 A memory-based collaborative filtering approach predicts item ratings based on ratings given by different users for an item. There are primary two forms of memory-based collaborative filtering.
 \paragraph{i. User-User CF:} 
@@ -136,7 +137,7 @@ In this section we will see frequently used model-based techniques.
 \\
 
 \paragraph{i. Singular Value Decomposition (SVD) }
-SVD is a technique of matrix factorization which is used to reduce the number of features in the data set. The matrix factorization is done on the matrix which is generated by the user's feedback in the form of ratings on different items. In SVD, the technique is used to detect latent relationship between users and items. Then it generate a low dimensional representation of original matrix space to calculate neighborhood in the reduced space \cite{32}. The original ratings matrix decomposes by SVD in two matrices in such way that product of decomposed matrices is original rating matrix. The SVD is calculated as shown in \autoref{eq:svd}
+SVD is a technique of matrix factorization which is used to reduce the number of features in the data set. The matrix factorization is done on the matrix which is generated by the user's feedback in the form of ratings on different items. In SVD, the technique is used to detect latent relationship between users and items. Then it generate a low dimensional representation of original matrix space to calculate neighborhood in the reduced space \cite{32}. The original ratings matrix decomposes by SVD in two matrices in such way that product of decomposed matrices is original rating matrix. The SVD is calculated as shown in \autoref{svd}
 
 \begin{equation}
 SVD(M) = U \times S \times V^{T} 
@@ -147,14 +148,14 @@ $SVD(M)$ denotes matrix M with dimensions $m \times n$ which are total number of
 Dimensions of matrix $U$ will be $m \times m$ \\
 Dimensions of matrix $S$ will be $m \times r$ \\
 Dimensions of matrix $V$ will be $r \times n$ \\
-$U$ and $V$ are called left and right singular vectors. To reduce features of dataset one can keep only k highest values and eliminate lower entries. So, $(r-k)$ columns from $U$ and $(r-k)$ rows from $V^{T}$ are discarded to gnerate $U_{k}$ and $V_{k}^{T}$ matrices. Now $M_{k}$ can be constructed with multiplication of $U_{k}$ and $V_{k}$ together using $S_{k}$. Generated $M_{k}$ will closest rank $k$ matrix to $M$. Mathematically it can be represented as in \autoref{eq:svd1}
+$U$ and $V$ are called left and right singular vectors. To reduce features of dataset one can keep only k highest values and eliminate lower entries. So, $(r-k)$ columns from $U$ and $(r-k)$ rows from $V^{T}$ are discarded to gnerate $U_{k}$ and $V_{k}^{T}$ matrices. Now $M_{k}$ can be constructed with multiplication of $U_{k}$ and $V_{k}$ together using $S_{k}$. Generated $M_{k}$ will closest rank $k$ matrix to $M$. Mathematically it can be represented as in \autoref{svd1}
 
 \begin{equation}
 M_{k} = U_{k} \times S_{k} \times V_{k}^{T} 
 \label{svd1}
 \end{equation}
 
-\noindent Rating prediction for user $u$ for item $i$ is given in \autoref{eq:svd2} \\
+\noindent Rating prediction for user $u$ for item $i$ is given in \autoref{svd2} \\
 
 \begin{equation}
 r_{ui} = r_{u} + U_{k} \sqrt{S_{k}^{T} (u)} \times \sqrt{S_k} \times V_{k}^{T}
@@ -162,6 +163,15 @@ r_{ui} = r_{u} + U_{k} \sqrt{S_{k}^{T} (u)} \times \sqrt{S_k} \times V_{k}^{T}
 \end{equation}
 
 \noindent With SVD we can predict ratings with good accuracy.
+
+
+
+
+\subsection{Hybrid Filtering}
+Pure recommendation systems have some limitations. Hybrid filtering technique is a combination of different recommendation techniques to overcome limitations of pure recommendation techniques to improve performance \cite{37,38}. Many researchers have combined content-based and collaborative filtering techniques to gain better results. The idea behind combining difeerent recommendation techniques is that resultant algorithm will provide more accurate and effective recommendations than any single algorithm \cite{39}. Using mulitple techniques we can overcome weaknesses of single technique. Burk \cite{} has categorized hybrid techniques in different types. One of them is weighted Hybridization.\\
+
+\subsubsection{Weighted Hybridization}
+In this technique, the results of multiple algorithms are combined to generate predictions by integrating the scores of each algorithm used. For example, \cite{41} P-Tango system combines content-based and collaborative filtering techniques. At start, both techniques were equally weighted but based on performance and user ratings the weight for different techniques has gradually adjusted. In this paper, we will be using weighted hybrid technique.
 
 
 
