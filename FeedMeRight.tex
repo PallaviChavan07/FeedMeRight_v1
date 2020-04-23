@@ -10,6 +10,8 @@
 \input{project-info}
 \input{preamble}
 
+
+
 \title{\thesistitle} 
 \author{\studentname}
 \date{\today}
@@ -19,31 +21,28 @@
 
 %%%%%%%%%% Remove Comment Later
 
-%\input{pages/frontpage}
-%\baselineskip = \baselineskip
-%\newpage
+\input{pages/frontpage}
+\baselineskip = \baselineskip
+\newpage
 
-%\input{pages/copyrightpage}
-%\newpage
+\input{pages/copyrightpage}
+\newpage
 
-%\input{pages/approvalpage}
-%\newpage
+\input{pages/approvalpage}
+\newpage
 
-%\includepdf{media/distribution-license.pdf}
-%\newpage
-
-
-
+\includepdf{media/distribution-license.pdf}
+\newpage
 \maketitle
-
-%\begin{abstract}
-%\input{abstract}
-%\newpage
-%\end{abstract}
+\begin{abstract}
+\input{abstract}
+\newpage
+\end{abstract}
 
 \newpage
 \pagenumbering{roman}
 
+\begin{doublespace}
 \tableofcontents
 
 \newpage
@@ -52,6 +51,7 @@
 
 \newpage
 \pagenumbering{arabic}
+
 \include{introduction/intro-1}
 \include{introduction/intro-2}
 
@@ -59,6 +59,7 @@
 \include{background/background-2}
 \include{background/background-3}
 \include{background/background-4}
+
 
 \section{Conclusion and future work}
 \label{sect-conclusion}
@@ -74,5 +75,7 @@
 %\bibliographystyle{acm}
 
 \printbibliography
+\end{doublespace}
+
 \end{document}
 
