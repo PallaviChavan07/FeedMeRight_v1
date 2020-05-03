@@ -2,19 +2,22 @@
 
 \section{Evaluation Metrics for Recommendation Systems}
 
-In this section we will see few of these methods that are used as evaluation metrics for recommender systems algorithms. Evaluation can be done by two ways, offline and online evaluation \cite{22,23}. In offline analysis collected data is divided into train set and test set in proportion of 80 to 20. The model of recommender system is trained on train dataset and test dataset is hidden from engine. Afterwords build algorithm trained on train dataset is used to predict ratings of unseen items. To understand the quality of recommendation engine, one or combination of evaluation metrics are used. There are several methods available to evaluate the performance of the recommender systems \cite{22,24}. We will see discuss those methods as follow. 
+In this section evaluation metrics used to evaluate recommender systems algorithms are explored. Evaluation can be done by two ways, offline and online evaluation \cite{22,23}. In offline evaluation methods an analysis of collected data is divided into training sets and testing sets in the proportion of 80\% training to 20\% testing. The model of recommender system is trained on the training dataset and testing dataset is hidden from engine. To understand the quality of recommendation engine, one or combination of evaluation metrics are used. There are several methods available to evaluate the performance of the recommender systems \cite{22,24}. 
   
 \subsection{Recall and Precision}
 
-Recall and precision are most commonly used metrics to evaluate recommendation engines \cite{25}. These metrics can be explained by a confusion matrix \cite{21} as shown in \autoref{fig:confusion_matrix}.
-  
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\linewidth]{confusion_matrix}
-	\caption{Confusion matrix for calculating recall and precision \cite{21}.
-	\label{confusion_matrix} }
-	\label{fig:confusion_matrix}
-\end{figure}
+Recall and precision are most commonly used metrics to evaluate recommendation engines \cite{25}. These metrics can be explained by a confusion matrix \cite{21} as shown in \autoref{confusion_matrix}.
+
+\begin{table}[]
+\begin{tabular}{lll}
+\hline
+                                 & Recommended             & Not Recommended         \\ \hline
+\multicolumn{1}{|l|}{Relevant}   & \multicolumn{1}{l|}{TP} & \multicolumn{1}{l|}{FN} \\ \hline
+\multicolumn{1}{|l|}{Irrelevant} & \multicolumn{1}{l|}{FP} & \multicolumn{1}{l|}{TN} \\ \hline
+\end{tabular}
+\caption{Confusion Matrix \cite{21}}
+\label{confusion_matrix}
+\end{table}
 
 \noindent Where\\
 TP denotes True Positive represents all relevant items are recommended by the system.\\
@@ -22,14 +25,14 @@ TN denotes True Negative represents all irrelevant items are correctly not recom
 FP denotes False Positive represents all irrelevant items which are
 incorrectly recommended by the system\\
 FN denotes False Negative represents relevant items but system failed to recommend.\\
-Based on \autoref{confusion_matrix}, precision is calculated as ratio of the relevant items from recommended items to the number of all recommended items. It is given in \autoref{eq:precision}. 
+\noindent Based on \autoref{confusion_matrix}, precision is calculated as ratio of the relevant items from recommended items to the number of all recommended items. It is given in \autoref{eq:precision}. 
 
 \begin{equation}
 Precision = \frac{TP}{TP + FP} 
 \label{eq:precision}
 \end{equation}
 
-Based on \autoref{confusion_matrix}, recall is calculated as the ratio of relevant items from recommended items to the number of all relevant items. It is given in \autoref{eq:recall}. 
+\noindent Based on \autoref{confusion_matrix}, recall is calculated as the ratio of relevant items from recommended items to the number of all relevant items. It is given in \autoref{eq:recall}. 
 
 \begin{equation}
 Recall = \frac{TP}{TP + FN} 
@@ -47,12 +50,12 @@ Mean absolute error used to calculate the average deviation or error generated f
 MAE = \frac{1}{n} \sum_{i=1}^{n}{\vert{Predicted_i - Actual_i} \vert}
 \label{eq:mae}
 \end{equation}
-Where, \\ 
+\noindent Where, \\ 
 $Predicted_i$ \textsf{ denotes predicted ratings given by user to the item} $i.$ \\
 $Actual_i$ \textsf{ denotes actual ratings given by user to the item } $i.$ \\
 $n$ \textsf{denotes number of items.}
 
-\noindent With this formula, MAE can calculate general performance of recommender systems but to compare engines with different rating scale, we can normalize MAE by dividing by the mean MAE value as shown in \autoref{eq:nmae}. 
+\noindent With this formula, MAE can calculate the general performance of recommender systems but to compare engines with a different rating scale, we can normalize MAE by dividing by the mean MAE value as shown in \autoref{eq:nmae}. 
 
 \begin{equation}
 NMAE = \frac{MAE} {Rating_{max} - Rating_{min}}
@@ -61,13 +64,12 @@ NMAE = \frac{MAE} {Rating_{max} - Rating_{min}}
 
 
 \subsection{Root Mean Square Error (RMSE)}
-RMSE is a variation of MAE. It also measures the average magnitude of the error. But it puts more weight on large errors as shown in \autoref{eq:rmse}. RMSE can be defines as square root of the average of squared deviations between predicted ratings and real ratings.
-
+RMSE is a variation of MAE. It also measures the average magnitude of the error. But it puts more weight on large errors as shown in \autoref{eq:rmse}. RMSE can be defined as a square root of the average of squared deviations between predicted ratings and real ratings.
 \begin{equation}
 RMSE = \sqrt{ \frac{1}{n} \sum_{i=1}^{n}{({Predicted_i - Actual_i} ) ^ {2}}}
 \label{eq:rmse}
 \end{equation}
-Where, \\
+\noindent Where, \\
 $Predicted_i$ \textsf{ denotes predicted ratings given by user to the item} $i.$ \\
 $Actual_i$ \textsf{ denotes actual ratings given by user to the item } $i.$ \\
 $n$ \textsf{denotes number of items.}
@@ -83,22 +85,21 @@ NRMSE = \frac{RMSE} {Rating_{max} - Rating_{min}}
 \subsection{Mean Reciprocal Rank}
 
 Mean Reciprocal Rank is one of the rank-aware evaluation metrics.
-It is retrieval measure which calculates the reciprocal of the rank at which the first relevant document was recommended \cite{27}.
-From the list of generated recommendations, it finds the rank of first relevant recommended item and computes the reciprocal of that rank. It can be calucluted as shown in \autoref{eq:mrr}
+It is a retrieval measure that calculates the reciprocal of the rank at which the first relevant document was recommended \cite{27}.
+From the list of generated recommendations, it finds the rank of the first relevant recommended item and computes the reciprocal of that rank. It can be calculated as shown in \autoref{eq:mrr}
 
 \begin{equation}
 MRR(O, U) = \frac{1}{\vert U \vert} \sum_{u \in \epsilon} \frac{1} {k_{u}}
 \label{eq:mrr}
 \end{equation}
 \noindent Where, \\
-$k_{u}$ denotes first relevant recommended item for user u. \\
-$U$  denotes number of users. \\
-MRR focuses on the first relevant item of the recommended list.HIgher reciprocal rank implies better recommendation engine.
+$k_{u}$ denotes the first relevant recommended item for user u. \\
+$U$  denotes the number of users. \\
+MRR focuses on the first relevant item of the recommended list. Higher reciprocal rank implies a better recommendation engine.
 
 
 \subsection{Mean Average Precision at cutoff k (MAP at k)}
-MAP at k considers the subset of list recommended by the system while measuring precision. It does not concern about ordering the items in the list. For each user for each relevant item it computes the precision of list through that item. After that it average sub list precisions. Mathematically it is show in \autoref{eq:map_at_k}
-
+MAP at k considers the subset of the list recommended by the system while measuring precision. It does not concern about ordering the items in the list. For each user for each relevant item, it computes the precision of the list through that item. After that it average sub-list precisions. Mathematically it is show in \autoref{eq:map_at_k}
 \begin{equation}
 MAP_{i} = \frac{1}{\vert R_{i} \vert} \sum_{k=1}^{\vert R_{i} \vert} { P( R_{i}[k]) }
 \label{eq:map_at_k}
@@ -110,5 +111,3 @@ $k$ denotes rank from 1 to k.\\
 $P$ denotes precision of first relevant item.
 
 \noindent Higher mean precision value implies correct recommendations.
-%\subsection{NDCG (Normalized Discounted Cumulative Gain)}
-%--------- To DO ---------

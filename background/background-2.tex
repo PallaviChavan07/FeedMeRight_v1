@@ -91,8 +91,9 @@ book3 & 1            \\ \hline
 \label{user_ratings_for_books}
 \end{table}
 
-The simplest way to form a user vector is to take a sum of dot product of matrices as resulted in \autoref{book_user_vector}.  
+\noindent The simplest way to form a user vector is to take a sum of dot product of matrices as resulted in \autoref{book_user_vector}.  
 \begin{table}[]
+\centering
 \begin{tabular}{|l|l|l|}
 \hline
 Machine Learning & Databases & Cyber Security \\ \hline
@@ -102,24 +103,47 @@ Machine Learning & Databases & Cyber Security \\ \hline
 \label{book_user_vector}
 \end{table}
 
+\noindent The content of an item can be complex such as text containing many words with high frequency. In such cases binary representation of rating considers all terms with same weight. To consider only important terms, various components are combined to calculate weight of the term. One way to calculate weight of term is to user term frequencies and inverse document frequencies (TF-IDF). 
+
+
+\subsubsection{Term Frequency - Inverse Document Frequency (TF-IDF)}
+TF-IDF is the most common computation used in text analysis and information retrieval process. It is used to measure the importance of a term with respect to document corpus. TF-IDF weighting negates the effect of high-frequency words in order to understand the importance of the term \cite{47}. It consists of two parts, the first is 'term frequency' and the second is 'inverse document frequency'.  The term frequency of term $i$ in a document $j$ is given in \autoref{eq:tf}
+\begin{equation}
+TF_{ij} = \frac{N_{i,j}}{\sum_{k} N_{kj}} = \frac{\textrm{Number of appearances of a term in a document}}{\textrm{Total number of terms in a document}}
+\label{eq:tf}
+\end{equation}
+\noindent Where N is a number of occurrences of term $T_{i}$ in the document $d_j$. The summation in the denominator provides the number of occurrences of all terms in the document $d_j$. 
+\\
+\noindent Inverse document frequency computes the importance of a word by comparing its occurrence in other documents. Inverse document frequency is given in \autoref{eq:idf} 
+\begin{equation}
+IDF_{ij} =\log  \frac{\vert D \vert}{\vert\{j:T_i \in d_j \}  \vert} = \frac{\textrm{Total number of documents in the corpus}}{\textrm{Number of documents appear with a term}}
+\label{eq:idf}
+\end{equation}
+\noindent Where, $\vert D \vert$ represents the corpus of documents. Denominator gives number of documents containing the term $T_i$.
+\\
+\begin{equation}
+TF-IDF = TF * IDF
+\label{eq:tfidf}
+\end{equation}
+\noindent The value of TF-IDF is calculated by multiplying value of term frequency and value of inverse document frequency. Consider an example of 100 documents corpus and a document $X$ contains 100 terms in it. The term 'excellent' appears in a document $X$ 10 times then term frequency of $X = \frac{10}{100} = 0.1$. If the term 'excellent' appears in 20 different documents then $IDF  = log\frac{100}{20} = 1.60 $ TF-IDF of the term 'excellent' = $0.1 * 1.60 = 0.160 $
+
 
 \subsubsection{Advantages of content-based filtering}
 
-Content-based recommender systems are heavily reliable on the contents of the items that have been rated by the user. So, while making recommendations, this approach would consider user’s taste and accordingly recommend an item that matches user’s preferences. Generally, most popular items dominate less popular items. But this approach will not miss less popular item if it matches the user’s unique taste \cite{6}.
+Content-based recommender systems are heavily reliant on the contents of the items that have been rated by the user. So, while making recommendations, this approach considers a user's taste and accordingly recommends an item that matches the user's preferences. Generally, the most popular items dominate less popular items. But this approach will not miss less popular items if it matches the user's unique taste \cite{6}. \\
+Consider pepperoni pizza is the most popular dish and veggie pizza is a less popular dish in a restaurant. The restaurant will always recommend pepperoni pizza to every person because the dish is popular with no understanding if a customer is vegetarian or not. The content-based system analyzes that only veg items are preferred by vegetarian customers. In that case, veggie pizza will be recommended by the content-based system even though it is less popular. 
 \\
 \subsubsection{Disadvantages of content-based filtering}
 
-User profiles are generated based on rated items. But for any new user who has not rated any items yet, user profile will be empty. In that case, recommending perfect item that matches to user’s taste is difficult as system does not have user taste information. This problem is known as cold start. Also, to understand each items feature, system needs to examine content of every item. Therefore if number of items rises quickly, performance of the system decreases \cite{6}.  
-\\
+User profiles are generated based on rated items. But for any new user who has not rated any items yet, the user profile will be empty. In that case, recommending a perfect item that matches to user’s taste is difficult as the system does not have user taste information. This problem is known as the cold start. Also, to understand each item's feature, the system needs to examine the content of every item. Therefore if a number of items rise quickly, the performance of the system decreases \cite{6}.\\
 
-\subsection{Collaborative Filtering}
-Collaborative filtering uses other users behavior in the system to predict and recommend items. It depends on user's contribution such as ratings, reviews which considered as filter for user preference information. The fundamental idea of collaborative filtering is, it selects other users opinions and aggregate in such way that it provides prediction for active user based on his preferences \cite{7}. 
-\\The main source of input for this algorithm is in the form of matrix of collected user-item ratings. Based on this input it provides recommendations as an output. The first step of output is to predict ratings for items that user may like. Prediction is a numerical that represents predicted score of specific item for specific user. Second step is to recommend a list of top rated items as top-N items. \autoref{fig:collaborative_process} highlights the collaborative filtering process.
+\subsection{Collaborative Filtering (CF)}
+The collaborative filtering system collects and analyzes a user's behavior based on a user's preferences given in the form of feedback, ratings, and activities. It is a domain-independent prediction technique. This technique can be used in the field where content can not be easily described by meta-data. To predict and recommend items for an active user, the collaborative filtering technique uses other than the active user's behavior in the system. It works on a user-item rating matrix of preferences for items by users. From this matrix, it matches the users with similar preferences and interests by calculating similarities between user profiles. Similarities between profiles can be calculated in different ways as discussed in \nameref{similarity_methods}. The fundamental idea of collaborative filtering is, it selects other users' opinions and aggregate in such a way that it provides a prediction for an active user based on his preferences \cite{7}.\\
+The main source of input for this algorithm is in the form of a matrix of collected user-item ratings as highlighted in the \autoref{fig:collaborative_process}. Here rows represent user ratings for items on a scale of 1 to 5 where 1 is the lowest and 5 is the highest rating. Columns represent items that have received ratings from users. For example, user U1 has given rating 5 to the item i1 and rating 4 to item 3. The system finds similar user profiles in different ways but here we can see that user 4 likes the same items which are rated high by user 1. From this analysis, we can consider that user 1 and user 4 are quite similar. Based on this matrix system provides recommendations as an output. The first step of output is to predict ratings for items that the user may prefer. From our analysis system can predict that user 4 may like item 4 because item 4 is rated high by user 1. Prediction is a numerical value that represents the predicted score of a specific item for a specific user. The second step is to recommend a list of top-rated items as top-N items. In this example, the system recommends item 4 to the user 4.
 \\
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{collaborative_process}
+	\includegraphics[width=0.9\linewidth]{cf_process1}
 	\caption{Collaborative Filtering Process \cite{33}}
 	\label{fig:collaborative_process}
 \end{figure}
@@ -128,21 +152,23 @@ Collaborative filtering uses other users behavior in the system to predict and r
 \noindent Collaborative Filtering technique is broadly divided into 2 categories \cite{11}. 
 \\
 \begin{itemize}
-\item Memory-based CF
-\item Model-based CF
+\item Memory-based CF \\
+A memory-based collaborative filtering approach predicts item ratings based on ratings given by different users for an item. There are primary two forms of memory-based collaborative filtering. 
+\item Model-based CF \\
+In contrary to memory-based collaborative filtering, the model-based algorithm takes the data that has been already preprocessed where it is cleansed, filtered, and transformed and generates a learned model to make predictions. This algorithm calculates the similarity between users or items by generating a model and analyzing their pattern to predict ratings on unseen items \cite{28,29,30}.
 \end{itemize}
 
-\subsubsection{A. Memory-Based (user based)}
-A memory-based collaborative filtering approach predicts item ratings based on ratings given by different users for an item. There are primary two forms of memory-based collaborative filtering.
-\paragraph{i. User-User CF:} 
+\subsubsection{User-User CF}
 
-Similarity between users is calculated based on how similarly they rate several items. It finds other users whose ratings are similar to active user and use their ratings on other items to predict what active user may like. Thus it recommends items to the users that are most preferred by similar users.
+In user-user collaborative filtering similarity between users is calculated based on how similarly they rate several items. For any active user, it finds users other than active users whose ratings are similar to the active user and use their ratings on items other than items rated by the active user to predict what active user may prefer. Thus it recommends items to the users that are most preferred by similar users.
 \\
-Consider example of user and ratings given by users to different recipes. This algorithm will find similarity between each user based on the ratings they have given to the recipes in the past. The prediction of a recipe for a user u is calculated by computing weighted sum of the user ratings given by other users to recipe i.
-The prediction for recipe I is given as below:
+Consider an example of users and ratings given by users for different recipes. This algorithm will find a similarity between each user based on the ratings they have given to the recipes in the past. The prediction of a recipe for a user u is calculated by computing weighted sum of the user ratings given by other users to the recipe i.
+The prediction for recipe i is given in \autoref{eq:user-user-cf}
+
 \\
 \begin{equation}
 P_{u,v} = \frac { \sum_v(r_{v,i} * S_{u,v})}{\sum_v S_{u,v}}
+\label{eq:user-user-cf}
 \end{equation}
 \\
 Where, 
@@ -155,21 +181,22 @@ $R_{v,i} = $ \text{rating given by user} $v$ \text{ to recipe } $i$
 $S_{u,v} = $\text{similarity between users.} 
 \\
 
-\noindent To predict the ratings for other user we need to calculate similarity score. The similarity between users can be calculated with the help of several methods described in the section of \nameref{similarity_methods}. Prior to that we need to find items rated by both users and its rating. Based on that rating, if we opt to calculate similarities with the Pearson correlation then we will get correlation score between users. Higher correlation implied higher similarity. Recommendations are made based on these prediction values. 
+\noindent To predict the ratings for a user other than active user we need to calculate similarity score. The similarity between users can be calculated with the help of several methods described in the section of \nameref{similarity_methods}. Prior to that, it is important to find items rated by both users and their ratings. Based on those ratings, if we choose to calculate similarities by using Pearson correlation, then we will get a correlation score between users. A higher correlation implies a higher similarity. Recommendations are made based on these predicted values. 
 \\
-This algorithm is quite expensive in terms of time as it involves calculating similarity score between each user and from that score calculating predictions. 
+This algorithm is quite expensive in terms of time as it involves calculating a similarity score between each user and from that score calculating predictions. 
 \\
-\noindent \paragraph{ii. Item-Item CF:}
 
-Item-Item CF filtering are introduced to solve challenges in User-User CF. As we seen in user user CF may become so expensive if we have large number of users. If we have huge number of users that items then it is ideal to adopt item-based CF.
+\subsubsection{Item-Item CF}
+
+Item-Item CF filtering can be introduced to solve challenges in User-User CF. As seen in user-user CF may become so expensive if we have a large number of users. If we have a huge number of users than items then it is ideal to adopt item-based CF.
 \\
 \\
-This algorithm calculates the similarity between items instead of users. It considers ratings of active user to make predictions for item $i$, as $i$ will be similar to the items rated in the past by active user. Therefore, user may prefer to use his own ratings than using some other users' ratings. It helps in maintaining user preferences and choice. The similarity between item can be calculated with any formula from section (add number) cosine similarity, Pearson
-correlation,Jacquard or Eucidean's distance formula.
+This algorithm calculates the similarity between items instead of users. It considers ratings of the active user to make predictions for item $i$, as $i$ will be similar to the items rated in the past by the active user. Therefore, a user may prefer to use his own ratings than using some other users' ratings. It helps in maintaining user preferences and choices. The similarity between items can be calculated using any method discussed in \nameref{similarity_methods}.
 \\
-The rating prediction for item-item collaborative filtering is calculated with below equation:
+The rating prediction for item-item collaborative filtering is calculated in \autoref{eq:item-item-cf}
 \begin{equation}
 P_{u,i} = \frac { \sum_N(S_{i,N} * R_{u,N})}{\sum_N (\vert S_{i,N} \vert)}
+\label{eq:item-item-cf}
 \end{equation}
 \\
 Where, 
@@ -182,30 +209,18 @@ $R_{u,N} = $ \text{rating given by user } $u$ \text{ on item } $N$
 $S_{i,N} = $\text{similarity between item $i$ and $N$.} 
 \\
 \\
-Memory based collaborative filtering can be useful in any area where we don't need to select many features. At the same time it suffers from dome drawbacks \cite{10}.
+Memory based collaborative filtering can be useful in any area where selection of many features is not necessary. At the same time it suffers from dome drawbacks \cite{10}.
 \\
-\\
-\textbf{Sparsity:}
-\\
-Many large systems that uses recommender systems to recommend their products has huge number of products in their database. All products are not rated by users. In that case, ratio of actual number of items to number of rated items is very huge. Because of such huge sparsity accuracy of recommender may result in poor recommendations.
-\\
-\\
-\textbf{Scalability:}
-\\
-Nearest neighbor algorithm requires high computations. It grows with number of users and number of items in the system. Any web-based system which has huge number o items and users (example Amazon.com) may suffer from high scalability.
+\begin{itemize}
+\item Sparsity \\
+Many large systems that use recommender systems to recommend their products have a huge number of products in their database. All products are not rated by users. In that case, the ratio of an actual number of items to the number of rated items is very huge. Because of such huge sparsity accuracy of the recommender may result in poor recommendations.
+\item Scalability \\
+The nearest neighbor algorithm requires high computations. It grows with a number of users and number of items in the system. Any web-based system which has a huge number o items and users (example Amazon.com) may suffer from high scalability.
 
-\subsubsection{B. Model-Based (item based):}
-In contrary to memory-based collaborative filtering, model-based algorithm take the data that has been already preprocessed where it is cleansed, filtered and transformed and generate learned model to make predictions. This algorithm calculates similarity between users or items by generating a model and analyzing their pattern to predict ratings on unseen items \cite{28,29,30} .
-\\
-Model-based collaborative filter has several techniques such as Slope one \cite{31}, Matrix Factorization (MF) and Singular Value Decomposition (SVD) \cite{28}. 
+\end{itemize}
 
-%based on SVD, SVD++, Matrix Factorization using gradient descent, Co-clusturing, Slope one approach.
-In this section we will see frequently used model-based techniques.
-\\
-
-\paragraph{i. Singular Value Decomposition (SVD) }
-SVD is a technique of matrix factorization which is used to reduce the number of features in the data set. The matrix factorization is done on the matrix which is generated by the user's feedback in the form of ratings on different items. In SVD, the technique is used to detect latent relationship between users and items. Then it generate a low dimensional representation of original matrix space to calculate neighborhood in the reduced space \cite{32}. The original ratings matrix decomposes by SVD in two matrices in such way that product of decomposed matrices is original rating matrix. The SVD is calculated as shown in \autoref{svd}
-
+\subsubsection{Singular Value Decomposition (SVD)}
+SVD is a technique of matrix factorization which is used to reduce the number of features in the data set. The matrix factorization is done on the matrix which is generated by the user's feedback in the form of ratings on different items. In SVD, the technique is used to detect a latent relationship between users and items. Then it will generate a low dimensional representation of original matrix space to calculate neighborhood in the reduced space \cite{32}. The original ratings matrix decomposes by SVD in two matrices in such a way that the product of decomposed matrices is the original rating matrix. The SVD is calculated as shown in \autoref{svd}
 \begin{equation}
 SVD(M) = U \times S \times V^{T} 
 \label{svd}
