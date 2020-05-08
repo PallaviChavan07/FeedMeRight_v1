@@ -1,5 +1,6 @@
 
 \section{Data Preparation}
+\label{sec:data_prep}
 Kaggle is a public platform which provides various types of data for research purpose. The dataset 'foodRecSys-V1' used in this thesis is received from Kaggle \cite{48}. This dataset consists of three files. The 'core-data\_recipe.csv' file has all information about recipes such as 'recipe\_id', 'recipe\_name', 'image\_url', 'ingredients', 'cooking\_directions', 'nutritions' as shown in \autoref{fig:raw_recipes_head}. It has $45630$ recipes with $6$ columns as per \autoref{fig:raw_recipes_shape}.
 
 \begin{figure}[H]
@@ -127,9 +128,19 @@ Extra Active                         & 1.9                                      
 \end{table}
 
 
-
-
-
+\subsection{Training and Testing Dataset}
+\label{sec:traintest}
+\begin{singlespace}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\linewidth]{overview_train_test_evaluation}
+	\caption{Train Test Evaluation }
+	\label{fig:overview_train_test_evaluation}
+\end{figure}  
+\end{singlespace}
+The overview of training and testing dataset is given in \autoref{fig:overview_train_test_evaluation}. The full dataset was randomly split into
+two parts - training dataset and testing dataset. The 80\% of the data was split inot the training dataset while 20\% of the data was in the testing set.  
+The training set was given to the algorithm to build a model and then built model was evaluated on the test dataset to calculate the accuracy and Mean Average Precision (MAP) for the experiments. Accurracy and the MAP are discussed in the section \nameref{sec:eval_metrics}.
 
 
 

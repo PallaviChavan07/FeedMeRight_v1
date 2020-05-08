@@ -3,13 +3,14 @@
 \label{sec:cb}
 
 The content-based model uses vector space models of a user and an item to find the similarity between two vectors. The overview of content-based model is discussed in the \autoref{fig:content_based_flowchart}. 
-
+\begin{singlespace}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{content_based_flowchart}
 	\caption{Content Based Filtering Work-Flow }
 	\label{fig:content_based_flowchart}
 \end{figure}  
+\end{singlespace}
 
 \noindent
 All user interactions are denoted by 'Users Ratings' and all recipes information is denoted by 'Recipes'. Required steps to generated a user profile and a recipe profile are discussed below.
@@ -22,8 +23,18 @@ Rated recipes are then filtered out and stored from a stored document-term matri
 \item On the resultant recipes vectors we have applied a calorie intake filter comparing recipe calories and user required calories. These recipes are offered as recommendations to the user.  
 \end{itemize}
  
+\begin{singlespace}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.25\linewidth]{content_based_ingredients_cookmethod_dietlabels}
+	\caption{Content Based Filtering Combined Work-Flow }
+	\label{fig:content_based_ingredients_cookmethod_dietlabels}
+\end{figure}  
+\end{singlespace}
+
 
 \subsection{Content-Based Using Ingredients}
+\label{sec:cb_ingredients}
 Recipe ingredients are used to calculate recommendations in content-based using ingredients approach. The user profile and recipe profiles are generated using ingredients in the recipes. The steps to generate recommendations for a user using ingredients in content based model are discussed below.
 \begin{itemize}
 \item All ingredients from recipes are extracted. 
@@ -36,13 +47,16 @@ Recipe ingredients are used to calculate recommendations in content-based using 
 \end{itemize}
 \subsubsection{Experiment}
 \label{sec:cb_ingred_exp}
+The purpose of this experiment was to evaluate the user recommendations on Ingredients algorithm mentioned in the \nameref{sec:cb_ingredients}. For this experiment, \lq{}Ingredients\rq{} attribute is used that is described in the section \nameref{sec:data_prep}. The training and testing datasets are split as explained in the section \nameref{sec:traintest}. The experiment was performed for an output set of 5, 10 and 20 recommendations. 
 
-\subsection{Recommendations Using Ingredients and Cooking Methods}
+\subsection{Recommendations Using Ingredients and Cook Methods}
+\label{sec:cb_ingredients_cook_method}
 \subsubsection{Experiment}
 \label{sec:cb_ingred_cook_method_exp}
+The purpose of this experiment was to evaluate the user recommendations on ingredients and cook method  algorithm mentioned in the \nameref{sec:cb_ingredients_cook_method}. For this experiment, \lq{}Ingredients\rq{} and \lq{}Cook Method\rq{} attributes are used that are described in the section \nameref{sec:data_prep}. The training and testing datasets are split as explained in the section \nameref{sec:traintest}. The experiment was performed for an output set of 5, 10 and 20 recommendations. 
+
 \subsection{Recommendations Using Ingredients, Cooking Method and Diet Labels}
+\label{sec:cb_ingredients_cook_method_diet_labels}
 \subsubsection{Experiment}
 \label{sec:cb_ingred_cook_method_diet_label_exp}
-
-
-
+The purpose of this experiment was to evaluate the user recommendations on ingredients, cook method  and diet labels algorithm mentioned in the \nameref{sec:cb_ingredients_cook_method_diet_labels}. For this experiment, \lq{}Ingredients\rq{}, \lq{}Cook Method\rq{} and \lq{}Diet Label\rq{} attributes are used that are described in the section \nameref{sec:data_prep}. The training and testing datasets are split as explained in the section \nameref{sec:traintest}. The experiment was performed for an output set of 5, 10 and 20 recommendations. 
