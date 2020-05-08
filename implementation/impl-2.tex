@@ -100,3 +100,64 @@ According to U.S. Food and Drug Administration (FDA) \cite{51}, \%DV is the perc
 
 \subsubsection{User Information}
 \label{sec:user_info}
+
+For a user 'height\_in\_inches', 'weight\_in\_lb', 'age' in years, 'gender' and 'activity' attributes are considerd. An activity is divided  into 5 categories. 1. Sedentary 2. Lightly Active 3. Moderately Active 4.Very Active 5. Extra Active. The user information is simulated with python script. The height range for an adult is considered from 52 inches to 80 inches. The weight range for an adult is considered from 64 lbs to 175 lbs. The Harris–Benedict equation is used to estimate an individual's basal metabolic rate (BMR). This estimated BMR value multiplied by a number that corresponds to a user's activity level provides the approximate daily kilocalorie intake to maintain current body weight \cite{}. To calculate BMR of male and female, the Harris–Benedict equation is given below.
+\begin{align}
+BMR (Male) = 66 + (6.3 * Weight\_lb) + (12.9 * Height\_inch) - (6.8 * age) \\
+BMR (Female) = 655 + (4.3 * Weight\_lb) + (4.7 * Height\_inch) - (4.7 * age)
+%\label{eq:bmr_female}
+\end{align}
+The relationship between BMR and user's activity level is depicted in \autoref{tb:calorie_intake}.  The approximate daily kilocalorie intake to maintain current body of a user, are calculated from \autoref{tb:calorie_intake}. 
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\begin{tabular}{|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{333333} \textbf{Lifestyle}} & {\color[HTML]{333333} \textbf{Multiplication Factor}} & {\color[HTML]{333333} \textbf{Approximate Calorie Intake}} \\ \hline
+Sedentary                                 & 1.2                                                   & BMR * 1.2                                                  \\ \hline
+Lightly Active                           & 1.375                                                 & BMR * 1.375                                                \\ \hline
+Moderately Active                        & 1.55                                                  & BMR *1.55                                                  \\ \hline
+Very Active                              & 1.725                                                 & BMR *1.725                                                 \\ \hline
+Extra Active                         & 1.9                                                   & BMR *1.9                                                   \\ \hline
+\end{tabular}
+\caption{Calorie Intake based on BMR}
+\label{tb:calorie_intake}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
