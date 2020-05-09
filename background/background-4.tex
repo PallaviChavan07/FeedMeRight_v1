@@ -6,26 +6,29 @@
 In this section evaluation metrics used to evaluate recommender systems algorithms are explored. Evaluation can be done by two ways, offline and online evaluation \cite{22,23}. In offline evaluation methods an analysis of collected data is divided into training sets and testing sets in the proportion of 80\% training to 20\% testing. The model of recommender system is trained on the training dataset and testing dataset is hidden from engine. To understand the quality of recommendation engine, one or combination of evaluation metrics are used. There are several methods available to evaluate the performance of the recommender systems \cite{22,24}. 
   
 \subsection{Recall and Precision}
+Recall and precision are most commonly used metrics to evaluate recommendation engines \cite{25}. These metrics can be explained by a confusion matrix \cite{21} as shown in \autoref{confusion_matrix}. \\
+\noindent
+TP = True Positive denotes all relevant items are recommended by the system.\\
+TN = True Negative denotes all irrelevant items are correctly not recommended by the system.  \\
+FP = False Positive denotes all irrelevant items which are
+incorrectly recommended by the system\\
+FN = False Negative denotes relevant items but system failed to recommend.\\
 
-Recall and precision are most commonly used metrics to evaluate recommendation engines \cite{25}. These metrics can be explained by a confusion matrix \cite{21} as shown in \autoref{confusion_matrix}.
-
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{table}[]
-\begin{tabular}{lll}
+\centering 
+\begin{tabular}{|l|l|l|}
 \hline
-                                 & Recommended             & Not Recommended         \\ \hline
-\multicolumn{1}{|l|}{Relevant}   & \multicolumn{1}{l|}{TP} & \multicolumn{1}{l|}{FN} \\ \hline
-\multicolumn{1}{|l|}{Irrelevant} & \multicolumn{1}{l|}{FP} & \multicolumn{1}{l|}{TN} \\ \hline
+\rowcolor[HTML]{C0C0C0} 
+\textbf{}  & \textbf{Recommeded} & \textbf{Not Recommended} \\ \hline
+Relevant   & TP                  & FN                       \\ \hline
+Irrelevant & FP                  & TN                       \\ \hline
 \end{tabular}
 \caption{Confusion Matrix \cite{21}}
 \label{confusion_matrix}
 \end{table}
-
-\noindent Where\\
-TP denotes True Positive represents all relevant items are recommended by the system.\\
-TN denotes True Negative represents all irrelevant items are correctly not recommended by the system.  \\
-FP denotes False Positive represents all irrelevant items which are
-incorrectly recommended by the system\\
-FN denotes False Negative represents relevant items but system failed to recommend.\\
 \noindent Based on \autoref{confusion_matrix}, precision is calculated as ratio of the relevant items from recommended items to the number of all recommended items. It is given in \autoref{eq:precision}. 
 
 \begin{equation}
@@ -42,7 +45,13 @@ Recall = \frac{TP}{TP + FN}
 
 Larger value of recall and precision implies better recommendations.
 
-
+\subsection{Accuracy}
+Accuracy is an another evaluatiion metrics for recommender systems. Accuracy is the fraction of correct predictions predicted by a model. It is calculated by equation given in \autoref{eq:accuracy}
+\begin{align}
+Accuracy = \frac{\textrm{Number of Correct predictions}}{\textrm{Total Number of Predictions}} \\
+Accuracy = \frac{TP + TN }{TP + TN + FP + FN}
+\label{eq:accuracy}
+\end{align}
 
 \subsection{Mean Absolute Error (MAE)}
 Mean absolute error used to calculate the average deviation or error generated from predicted ratings and actual ratings \cite{26}.

@@ -1,1 +1,91 @@
 \chapter{Results}
+\section{Content Based Results}
+\subsection{Experiment 1 Results}
+\autoref{tb:contentbased}, row one, shows recall, precision and accuracy values for \nameref{sec:cb_ingred_exp}, performed on content based model by considering only one attribute in ingredients.
+
+\subsection{Experiment 2 Results}
+\autoref{tb:contentbased}, row two, shows recall, precision and accuracy values for \nameref{sec:cb_ingred_cook_method_exp}, performed on content-based model by considering two attributes in ingredients and cooking methods. Comparing the results of experiments 1 and 2, there is a significant increase in recall, precision and accuracy due to the addition of cook methods attribute to ingredients.
+
+\subsection{Experiment 3 Results}
+\autoref{tb:contentbased}, row three, shows recall, precision and accuracy values for \nameref{sec:cb_ingred_cook_method_diet_label_exp}, performed on content based model by considering three attributes in ingredients, cooking methods and diet-labels. Comparing the results of experiment 2 and 3, there is a slight increase in recall, precision and accuracy on adding diet-labels attribute.
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} \textbf{Model Name}}                                                                           & {\color[HTML]{000000} \textbf{Recall at 10}} & {\color[HTML]{000000} \textbf{Precision at 10}} & {\color[HTML]{000000} \textbf{Accuracy at 10}} \\ \hline
+{\color[HTML]{000000} CB using ingredients}                                                                          & {\color[HTML]{000000} 0.137357974}           & {\color[HTML]{000000} 0.03820108}               & {\color[HTML]{000000} 0.038263398}             \\ \hline
+{\color[HTML]{000000} \begin{tabular}[c]{@{}l@{}}CB using ingredients \\ and cook method\end{tabular}}               & {\color[HTML]{000000} 0.187137273}           & {\color[HTML]{000000} 0.052394308}              & {\color[HTML]{000000} 0.052560507}             \\ \hline
+{\color[HTML]{000000} \begin{tabular}[c]{@{}l@{}}CB using ingredients, \\  cook method and diet labels\end{tabular}} & {\color[HTML]{000000} 0.194521619}           & {\color[HTML]{000000} 0.055250337}              & {\color[HTML]{000000} 0.055416192}             \\ \hline
+\end{tabular}
+\caption{Content Based Attributes}
+\label{tb:contentbased}
+\end{table}
+
+
+\section{Collaborative and Hybrid Results}
+\subsection{Experiment 4 Results}
+\autoref{tb:recall}, \autoref{tb:precision} and \autoref{tb:accuracy} row two shows recall, precision and accuracy values for 5, 10 and 20 recommendations evaluated for \nameref{sec:cf_exp}. Comparing the results of experiment 3 and 4, there is substantial increase in recall, precision and accuracy values for collaborative filtering approach.
+
+\subsection{Experiment 5 Results}
+\autoref{tb:recall}, \autoref{tb:precision} and \autoref{tb:accuracy} row three shows recall, precision and accuracy values for 5, 10 and 20 recommendations evaluated for \nameref{sec:hybrid_exp}. Comparing the results of experiments 3, 4 and 5, below are some observations.
+\begin{itemize}
+\item Significant increase in recall results for recommendations of 5, 10 and 20 across content-based, collaborative and hybrid models
+\item Substantial increase in precision of collaborative model when compared to content-based model results for recommendations of 5, 10 and 20.
+\item Negligible increase in precision of the hybrid model when compared to collaborative model results for recommendations of 5, 10 and 20.
+\item For recommendations of 5 and 10 the accuracy for collaborative sees a considerable increase when compared to the content-based model, while a slight increase in accuracy at 20 recommendations.
+\item Good increase in accuracy at 5, 10 and 20 recommendations for the hybrid model when compared to the collaborative filtering model.
+\end{itemize}
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} \textbf{Model   Name}}   & {\color[HTML]{000000} \textbf{Recall at 5}} & {\color[HTML]{000000} \textbf{Recall at10}} & {\color[HTML]{000000} \textbf{Recall at 20}} \\ \hline
+{\color[HTML]{000000} Content-based}           & {\color[HTML]{000000} 0.144363034}          & {\color[HTML]{000000} 0.194521619}          & {\color[HTML]{000000} 0.246029583}           \\ \hline
+{\color[HTML]{000000} Collaborative Filtering} & {\color[HTML]{000000} 0.304749297}          & {\color[HTML]{000000} 0.425609771}          & {\color[HTML]{000000} 0.451710877}           \\ \hline
+{\color[HTML]{000000} Hybrid}                  & {\color[HTML]{000000} 0.333330239}          & {\color[HTML]{000000} 0.553225406}          & {\color[HTML]{000000} 0.63603721}            \\ \hline
+\end{tabular}
+\caption{Recall comparison between CB, CF and Hybrid models}
+\label{tb:recall}
+\end{table}
+\vspace{-2em}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} \textbf{Model   Name}}   & {\color[HTML]{000000} \textbf{Precision at 5}} & {\color[HTML]{000000} \textbf{Precision at10}} & {\color[HTML]{000000} \textbf{Precision at 20}} \\ \hline
+{\color[HTML]{000000} Content-based}           & {\color[HTML]{000000} 0.079879755}             & {\color[HTML]{000000} 0.055250337}             & {\color[HTML]{000000} 0.035456619}              \\ \hline
+{\color[HTML]{000000} Collaborative Filtering} & {\color[HTML]{000000} 0.205462838}             & {\color[HTML]{000000} 0.205516395}             & {\color[HTML]{000000} 0.205617723}              \\ \hline
+{\color[HTML]{000000} Hybrid}                  & {\color[HTML]{000000} 0.20602087}              & {\color[HTML]{000000} 0.206670344}             & {\color[HTML]{000000} 0.206672018}              \\ \hline
+\end{tabular}
+\caption{Precision comparison between CB, CF and Hybrid models}
+\label{tb:precision}
+\end{table}
+\vspace{-2em}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} \textbf{Model   Name}}   & {\color[HTML]{000000} \textbf{Accuracy at 5}} & {\color[HTML]{000000} \textbf{Accuracy at10}} & {\color[HTML]{000000} \textbf{Accuracy at 20}} \\ \hline
+{\color[HTML]{000000} Content-based}           & {\color[HTML]{000000} 0.080107806}            & {\color[HTML]{000000} 0.055416192}            & {\color[HTML]{000000} 0.035591376}             \\ \hline
+{\color[HTML]{000000} Collaborative Filtering} & {\color[HTML]{000000} 0.186462113}            & {\color[HTML]{000000} 0.136871566}            & {\color[HTML]{000000} 0.074100757}             \\ \hline
+{\color[HTML]{000000} Hybrid}                  & {\color[HTML]{000000} 0.201762206}            & {\color[HTML]{000000} 0.174157769}            & {\color[HTML]{000000} 0.104027159}             \\ \hline
+\end{tabular}
+\caption{Accuracy comparison between CB, CF and Hybrid models}
+\label{tb:accuracy}
+\end{table}
+

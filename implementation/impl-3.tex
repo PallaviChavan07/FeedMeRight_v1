@@ -1,8 +1,10 @@
 % COntinued Chpater Implementation
-\section{Content Based Model}
+\section{Implementation Approaches}
+\label{sec:impl_approaches}
+\subsection{Content Based Model}
 \label{sec:cb}
 
-The content-based model uses vector space models of a user and an item to find the similarity between two vectors. The overview of content-based model is discussed in the \autoref{fig:content_based_flowchart}. 
+The content-based model uses Vector Space Models (VSM) of a user and an item to find the similarity between two vectors. The overview of content-based model is described in the \autoref{fig:content_based_flowchart}. 
 \begin{singlespace}
 \begin{figure}[H]
 	\centering
@@ -15,12 +17,11 @@ The content-based model uses vector space models of a user and an item to find t
 \noindent
 All user interactions are denoted by 'Users Ratings' and all recipes information is denoted by 'Recipes'. Required steps to generated a user profile and a recipe profile are discussed below.
 \begin{itemize}
-\item All recipe profiles are generated based on the relevancy of terms to be considered. The term may vary based on the application area. In this thesis, ingredients, cooking methods, and diet labels are considered. The relevancy of terms in the documents is measured by TF-IDF as discussed in \nameref{sec:tf-idf}. A document term matrix is generated and stored for all recipes. 
-\item Rated recipes for a single user are filtered from all user interactions.
-Rated recipes are then filtered out and stored from a stored document-term matrix. 
+\item All recipe profiles are generated based on the relevancy of terms to be considered. The term may vary based on the application area. In this thesis, ingredients, cooking methods, and diet labels are considered. The relevancy of terms in the documents is measured by TF-IDF as discussed in the section \nameref{sec:tf-idf}. A document-term matrix is generated and stored for all recipes. 
+\item Rated recipes for a single user are filtered from all user interactions. Rated recipes are then filtered out from document-term matrix. 
 \item To construct a user profile, recipes vectors rated by a user are considered. Then a weighted average of rated recipe profiles is calculated. The user profile is further normalized on the weighted values. 
-\item Similarity between the user profile and all recipe profiles from the dataset is measured by cosine similarity as discussed in \nameref{cosine_similarity}. Recipes that are rated previously by the user are omitted to calculate relevance. Sort these recipes in descending order of similarity scores.
-\item On the resultant recipes vectors we have applied a calorie intake filter comparing recipe calories and user required calories. These recipes are offered as recommendations to the user.  
+\item Similarity between the user profile and all recipe profiles from the dataset is measured by cosine similarity as discussed in section \nameref{cosine_similarity}. Recipes that are rated previously by the user are omitted to calculate relevance. These recipes are then sorted in descending order of similarity scores.
+\item On the resultant recipes vectors, a calorie intake filter is applied, comparing recipe calories and user required calories. These recipes are offered as recommendations to the user.  
 \end{itemize}
  
 \begin{singlespace}
@@ -33,30 +34,54 @@ Rated recipes are then filtered out and stored from a stored document-term matri
 \end{singlespace}
 
 
-\subsection{Content-Based Using Ingredients}
+\subsubsection{Content-Based Using Ingredients}
 \label{sec:cb_ingredients}
-Recipe ingredients are used to calculate recommendations in content-based using ingredients approach. The user profile and recipe profiles are generated using ingredients in the recipes. The steps to generate recommendations for a user using ingredients in content based model are discussed below.
-\begin{itemize}
-\item All ingredients from recipes are extracted. 
-\item Similarity between recipes are considered based on ingredients but there are many ingredients are commonly used in all recipes such as salt. To get the importance of ingredients which are relevant to the recipe and to negate effect of high frequency terms, concept of TF-IDF has been used as discussed in \nameref{sec:tf-idf}. The recipe vector or recipe profile is calculated for each recipe in the dataset. The 'TfidfVectorizer' function from 'sklearn' has been used to calculate TF-IDF.
-\item The weighted average of a user rated recipe profiles is calculated to construct a user profile. Constructed user profile is based on ingredients of the recipes.  
-\item Similarity between a user profile and all recipe profiles in the dataset is calculated using cosine similarity. The 'linear\_kernel' function from the 'sci-kit learn' library has been used for the same. 
-\item The resultant profiles are listed in descending order of similarity score to get more relevant recipes at top. At this point recipes already rated by a user are omitted. 
-\item From user's information, the BMR and the required calorie intake per meal is calculated. 
-\item The resultant set of recipes are offered as recommendations. 
-\end{itemize}
-\subsubsection{Experiment}
-\label{sec:cb_ingred_exp}
-The purpose of this experiment was to evaluate the user recommendations on Ingredients algorithm mentioned in the \nameref{sec:cb_ingredients}. For this experiment, \lq{}Ingredients\rq{} attribute is used that is described in the section \nameref{sec:data_prep}. The training and testing datasets are split as explained in the section \nameref{sec:traintest}. The experiment was performed for an output set of 5, 10 and 20 recommendations. 
+Recipe ingredients are used to calculate recommendations in content-based using ingredients approach. The user profile and recipe profiles are generated using ingredients in the recipes. The steps to generate recommendations for a user using ingredients in content based model are discussed below.\\
+All ingredients from recipes are extracted. Similarity between recipes are considered based on ingredients but there are many ingredients that occur in all recipes such as salt. To get the importance of ingredients which are relevant to the recipe and to negate effect of high frequency terms, concept of TF-IDF has been used as discussed in section \nameref{sec:tf-idf}. The recipe vector or recipe profile is calculated for each recipe in the dataset. The 'TfidfVectorizer' function from 'sklearn' library has been used to calculate TF-IDF. The VSM for ingredients in the \autoref{fig:content_based_ingredients_cookmethod_dietlabels} represents Vector Space Model using ingredients. The weighted average of a user rated recipe profiles is calculated to construct a user profile. Similarity between a user profile and all recipe profiles in the dataset is calculated using cosine similarity. The 'linear\_kernel' function from the 'sci-kit learn' library has been used for the same. The resultant profiles are listed in descending order of similarity score to get more relevant recipes at top. At this point recipes already rated by a user are omitted. From user's information, the BMR and the required calorie intake per meal is calculated as discussed in the section \nameref{sec:user_info}. The resultant set of recipes are offered as recommendations. 
 
-\subsection{Recommendations Using Ingredients and Cook Methods}
+\subsubsection{Content-Based Using Ingredients and Cook Methods}
 \label{sec:cb_ingredients_cook_method}
-\subsubsection{Experiment}
-\label{sec:cb_ingred_cook_method_exp}
-The purpose of this experiment was to evaluate the user recommendations on ingredients and cook method  algorithm mentioned in the \nameref{sec:cb_ingredients_cook_method}. For this experiment, \lq{}Ingredients\rq{} and \lq{}Cook Method\rq{} attributes are used that are described in the section \nameref{sec:data_prep}. The training and testing datasets are split as explained in the section \nameref{sec:traintest}. The experiment was performed for an output set of 5, 10 and 20 recommendations. 
+Recipe ingredients and cook methods are used to calculate recommendations in content-based using ingredients and cook method approach. Extractiion process of cook methods from cooking directions is discussed in the section \nameref{sec:cook_method}.  The user profile and recipe profiles are generated using cook method in the recipes. The VSM for cook method in the \autoref{fig:content_based_ingredients_cookmethod_dietlabels} represents Vector Space Model using cook method. The recipe vector is calculated for each recipe in the dataset. Constructed user profile is based on cook methods of the recipes. Similarity between a user profile and all recipe profiles in the dataset is calculated using cosine similarity. Further, average of cosine similarity scores generated using ingredients and cook methods is considered as a result. The resultant profiles are listed in descending order of similarity score to get more relevant recipes at top. At this point recipes already rated by a user are omitted. From user's information, the BMR and the required calorie intake per meal is calculated as discussed in the section \nameref{sec:user_info}. The resultant set of recipes are offered as recommendations. 
 
-\subsection{Recommendations Using Ingredients, Cooking Method and Diet Labels}
+\subsubsection{Content-Based Using Ingredients, Cook Methods and Diet Labels}
 \label{sec:cb_ingredients_cook_method_diet_labels}
-\subsubsection{Experiment}
-\label{sec:cb_ingred_cook_method_diet_label_exp}
-The purpose of this experiment was to evaluate the user recommendations on ingredients, cook method  and diet labels algorithm mentioned in the \nameref{sec:cb_ingredients_cook_method_diet_labels}. For this experiment, \lq{}Ingredients\rq{}, \lq{}Cook Method\rq{} and \lq{}Diet Label\rq{} attributes are used that are described in the section \nameref{sec:data_prep}. The training and testing datasets are split as explained in the section \nameref{sec:traintest}. The experiment was performed for an output set of 5, 10 and 20 recommendations. 
+Recipe ingredients, cook methods and diet labels are used to calculate recommendations in content-based using ingredients, cook methods and diet labels approach. Extractiion process of diet labels from nutrition attribute is discussed in the section \nameref{sec:diet_labels}. In addition to ingredients and cook methods, the user profile and recipe profiles are generated using diet labels in the recipes.. The VSM for diet labels in the \autoref{fig:content_based_ingredients_cookmethod_dietlabels} represents Vector Space Model using diet labels. The recipe vector is calculated for each recipe in the dataset. Constructed user profile is based on diet labels of the recipes. Similarity between a user profile and all recipe profiles in the dataset is calculated using cosine similarity. Further, average of cosine similarity scores generated using ingredients, cook methods and diet labels is considered as a result. The resultant profiles are listed in descending order of similarity score to get more relevant recipes at top. At this point recipes already rated by a user are omitted. From user's information, the BMR and the required calorie intake per meal is calculated as discussed in the section \nameref{sec:user_info}. The resultant set of recipes are offered as recommendations. 
+
+\subsection{Collaborative Filtering Model}
+\label{sec:cf}
+Model-based collaborative filtering for the user and recipes was applied. This approach utilizes information related to user ratings on the recipes. A Singular Value Decomposition algorithm has been applied to get the recommendations. The below approach was followed to get recommendations using SVD.
+\begin{singlespace}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3 \linewidth]{cf-svd}
+	\caption{Collaborative Filtering- SVD Work-Flow }
+	\label{fig:cf-svd}
+\end{figure}  
+\end{singlespace}
+
+\begin{itemize}
+\item All user ids and recipe ids are extracted in such a way that every user id and recipe id represents a unique relationship via rating. The user id refers to unique id given to the user and recipe id refers to a unique id given to the recipe in the dataset. The matrix of user-recipes ratings is formed such as a user represents row and recipes represents columns. The cell value represents a rating for a recipe given by a user. From this matrix, the sparse matrix was created. 
+\item The sparse matrix is the same as above matrix except it has high efficiency to perform large mathematical operations. To create a sparse matrix, 'csr\_matrix' function is used from 'scipy.sparse' library. The generated sparse matrix was sent as an input to the SVD algorithm.
+\item SVD algorithm runs Principal Component Analysis (PCA) on the user-rating matrix to give back factors of the rating matrix as discussed in \nameref{sec:svd}. The dot product of these factors returns a rating matrix with predicted ratings. 
+\item Further, normalization was performed to get all predicted ratings for all users, for all recipes.
+\end{itemize}
+
+\subsection{Hybrid Model(CB and CF)}
+\label{sec:hybrid_impl}
+Hybrid model is a combination of content-based and collaborative filtering. The work-flow of the application using hybrid technique is depicted in the \autoref{fig:hybrid}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0 \linewidth]{hybrid}
+	\caption{Hybrid Work-Flow }
+	\label{fig:hybrid}
+\end{figure}  
+\begin{itemize}
+\item The system prompts to enter a user id. The existence of an entered user id is cross-verified by the system.
+\item If user id exists, content-based model that consists of ingredients, cook method and diet labels runs for this user and generates scores for relevant recipes. Once the content-based execution finishes, the collaborative filtering model runs and generates predicted ratings for all users. From this result set, predictions for a requested user are filtered out. 
+\item While combining scores, a weighing factor of 0.3 is applied to the content-based and weighing factor of 0.7 is applied to the collaborative filtering.
+\item Scores are sorted in the descending order to get more relevant items at the top. At this point, recipes that are already rated by the user are omitted. Next, a calorie filter is applied to filter out healthy recipes.
+\item Resultant set of recipes is offered as recommendations to the user.
+\item If entered user id does not exist in the system, the system prompts to enter user details such as 'height in inches', 'weight in lbs', 'age', 'gender' and 'activity' option. User's BMR and calorie intake per dish are calculated as discussed in the \nameref{sec:user_info}. 
+\item Here, the user's information goes through a popularity-based algorithm. This model finds the most popular recipes by considering the average rating for recipes and maximum number of ratings per recipe. List of these recipes is then sorted in descending order and filtered out by comparing recipe calories that are less than or equal to user's calorie requirements. The resultant set of recipes is further categorized into diet labels and represented as recommendations to the user.
+\item System provides an option to give feedback for a recipe in the form of ratings. The user can enter a recipe name along with its rating. This feedback is saved for future model generation and recipe recommendation for this new user.
+\end{itemize}
