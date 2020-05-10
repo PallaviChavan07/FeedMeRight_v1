@@ -1,6 +1,7 @@
 \chapter{Implementation}
+\label{ch:impl}
 \section{Environment Setup}
-In this thesis, different techniques of recommendation algorithms have used to recommend recipes to users. The process of building recommendation models and evaluating those models requires high computational time and memory. The initial analysis is done on my personal machine but to achieve better efficiency and performance in terms of time and space of the application I chose to run it in the cloud environment.  In the current market, many cloud service providers are available such as Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud. To accelerate the execution performance of the analysis of this application, the Google Cloud Platform is used. \\
+In this thesis, different techniques of recommendation algorithms have used to recommend recipes to users. The process of building recommendation models and evaluating those models requires high computational time and memory. The initial analysis is done on my personal machine but to achieve better efficiency and to reduce the execution time of the application, I chose to run it in the cloud environment.  In the current market, many cloud service providers are available such as Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), IBM Cloud. To accelerate the execution performance of the analysis of this application, the Google Cloud Platform is used. \\
 \noindent GCP platform provides custom, configurable high-performance virtual machines with ease of application or scripts deployment via its User Interface (UI). There are three basic steps to run an application on a Virtual Machine (VM) on GCP. 
 \subsection{Create GCP Account}
 GCP account is linked with a user's Google account. One can enter into the GCP console dashboard by signing in with Google account. By default GCP creates a project for a user with the name 'My First Project'. Users can create a new project here. I have created a project with the name 'FeedMeRight'. As per \autoref{fig:gcp_dashboard} project id and project number have been created by GCP for the 'FeedMeRight' project. 
@@ -15,12 +16,12 @@ GCP account is linked with a user's Google account. One can enter into the GCP c
 Compute Engine lets you create and run virtual machines on Google Cloud Infrastructure. It helps to easily launch applications that require high computational capacity by offering scale, performance. Virtual machines are designed to be fast and to provide strong consistency of performance. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\linewidth]{vm_instance_option}
+	\includegraphics[width=0.50\linewidth]{vm_instance_option}
 	\caption{GCP Service List}
 	\label{fig:vm_instance_option}
 \end{figure}
 
-\noindent As per \autoref{fig:vm_instance_option}, with the help of 'Compute Engine', virtual machine instance can be created. Created VM instance's settings can be customized. Configurations for 'FeedMeRight' are used as shown in \autoref{fig:vm_configuration}.
+\noindent As per \autoref{fig:vm_instance_option}, with the help of `Compute Engine', virtual machine instance can be created. Created VM instance's settings can be customized. Configurations for 'FeedMeRight' are used as shown in \autoref{fig:vm_configuration}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{vm_configuration}
@@ -29,7 +30,7 @@ Compute Engine lets you create and run virtual machines on Google Cloud Infrastr
 \end{figure}
 
 \subsection{Python Scripts Deployment}
-After successful creation of VM instance, the application can be configured on this instance. To get all scripts created for 'FeedMeRight' Git software has been used. Git is a version control system to keep track of changes in the source code. The source code for the project is stored on GitHub. GitHub is a cloud-based hosting service that lets you manage Git repositories. With the help of Git, we can pull all the source code stored in the cloud repository. To run the application, the installation of a set of libraries are required on VM. 
+After successful creation of VM instance, the application can be configured on this instance. To get all scripts created for `FeedMeRight' Git software has been used. Git is a version control system to keep track of changes in the source code. The source code for the project is stored on GitHub. GitHub is a cloud-based hosting service that lets you manage Git repositories. With the help of Git, we can pull all the source code stored in the cloud repository. To run the application, the installation of a set of libraries are required on VM. 
 
 \begin{itemize}
 \item \textbf{Numpy: } Numpy library provides support for large, multi-dimensional arrays and matrices. Also, it supports high-level mathematical functions.

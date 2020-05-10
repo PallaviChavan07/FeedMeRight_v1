@@ -2,12 +2,12 @@
 
 \section{Similarity Methods}
 \label{similarity_methods}
-There are several methods available to calculate similarity score.
+In this section several methods are discussed to calculate similarity score between two vectors.
 \\
 
 \subsection{Cosine Similarity}
 \label{cosine_similarity}
-In cosine similarity measure \cite{19}, the result is the cosine of the angle between two vectors. It is measured by the cosine angle between two vectors and discovers the direction between two vectors is same or not. Often it is used to calculate document similarity in text analysis. The item ratings or preferences are stored in one vector called as item vector. The preferences of user are stored in another vector based on user's ratings and likes-dislikes is known as profile vector. Consider $A = (5,0,3,0,2)$ and $B = (3,0,2,0,2)$ are profile vector and item vector respectively, the similarity between them can be calculated as per \autoref{eq:cosine_similarity}.
+In cosine similarity measure \cite{19}, the result is the cosine of the angle between two vectors. It  discovers the direction between two vectors if it is same or not. Often, cosine similarity is used to calculate document similarity in text analysis. The item ratings or preferences are stored in one vector called as item vector. The preferences of user are stored in another vector based on user's ratings and likes-dislikes is known as profile vector. Consider $A = (5,0,3,0,2)$ and $B = (3,0,2,0,2)$ are profile vector and item vector respectively, then the similarity between them can be calculated as per \autoref{eq:cosine_similarity}.
 \\
 
 \begin{equation}
@@ -23,19 +23,18 @@ sim(A,B) = cos(\theta) = \frac {A.B}{\parallel A \parallel \parallel B \parallel
 \end{figure}
 
 \noindent
-Using \autoref{cosine_similarity} if we compute cosine similarity between A and B vectors, then we get:
+Using \autoref{eq:cosine_similarity}, if we compute cosine similarity between vectors A and B, then we get:
 \begin{align*}
 \parallel A \parallel \parallel B \parallel &=(5 x 3 + 0 x 0 + 3 x 2 + 0 x 0 + 2 x 2  ) = 25 \\
 \parallel A \parallel  &= \sqrt{5^2 + 0^2 + 3^2 + 0^2 + 2^2}  = 6.164414 \\	     
 \parallel B \parallel  &= \sqrt{3^2 + 0^2 + 2^2 + 0^2 + 2^2}  = 3.74165\\	     
 sim(A,B)  &=  0.92 
 \end{align*}
-\noindent The value of cosine angle ranges between -1 to 1. Calculated result 0.92 shows that vector A and B are quite similar as the result inclines towards 1. As per \autoref{fig:cosine_similarity} lesser the angle, less distance between vectors hence vectors considered as more similar to each other.
+\noindent The value of cosine angle ranges between -1 to 1. Calculated result 0.92 shows that vector A and B are quite similar as the result inclines towards 1. As per \autoref{fig:cosine_similarity} lesser angle depicts less distance between two vectors. Hence, calculated vectors considered more similar to each other.
 \\
 \subsection{Euclidean Distance Similarity}
 \label{euclidean_distance}
-The Euclidean distance between two points is the length which is connecting those two points. If we plot n dimensional space and plot similar items, then they will fall under close proximity. Consider a example of a positive quadrant of space and we plot items on the axis which are rated by user. The \autoref{user_movie_rating_table} illustrates the relationship between users and movies with ratings. The points drawn on graph in \autoref{fig:movie_plots} represents rating given by the user to those particular movies.
-
+The Euclidean distance between two points is the length between two connecting points. If we plot n-dimensional space and plot similar items, then they will fall under close proximity. Consider an example of a positive quadrant of space and we plot items on the axis which are rated by the user. The \autoref{user_movie_rating_table} illustrates the relationship between users and movies with ratings. The points are drawn on the graph in \autoref{fig:movie_plots} represents ratings given by the user to those particular movies.
 \begin{table}[]
 \centering
 \begin{tabular}{|l|l|l|l|}
@@ -83,5 +82,5 @@ sim(u,v) = \frac{\sum (r_{ui} - \bar{r}_u) (r_{vi} - \bar{r}_v )}{\sqrt{(\sum (r
 \label{eq:pearson_corr}
 \end{equation}
 
-\noindent Where $r_{ui}$ and $r_{vi}$ are rating scores for from two users. $\bar{r_{u}}$ and $\bar{r_{v}}$ denote the average rating by the two users.
-Pearson correlation score $> 0$ indicates positive association. On the other hand, Pearson correlation score $ < 0$ indicates the negative correlation and score $ = 0$ indicates that no correlation. Hence a correlation value can capture a rating similarity between two users.
+\noindent Where $r_{ui}$ and $r_{vi}$ are rating scores from two users. $\bar{r_{u}}$ and $\bar{r_{v}}$ denote the average rating by the two users.
+Pearson correlation score $> 0$ indicates positive association. On the other hand, Pearson correlation score $ < 0$ indicates the negative correlation and score $ = 0$ indicates no correlation. Hence a correlation value can capture a rating similarity between two users.

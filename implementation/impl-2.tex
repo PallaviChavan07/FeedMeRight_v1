@@ -1,7 +1,7 @@
 
 \section{Data Preparation}
 \label{sec:data_prep}
-Kaggle is a public platform which provides various types of data for research purpose. The dataset 'foodRecSys-V1' used in this thesis is received from Kaggle \cite{48}. This dataset consists of three files. The 'core-data\_recipe.csv' file has all information about recipes such as 'recipe\_id', 'recipe\_name', 'image\_url', 'ingredients', 'cooking\_directions', 'nutritions' as shown in \autoref{fig:raw_recipes_head}. It has $45630$ recipes with $6$ columns as per \autoref{fig:raw_recipes_shape}.
+Kaggle is a public platform which provides various types of data for research purpose. The dataset 'foodRecSys-V1' used in this thesis is received from Kaggle \cite{48}. This dataset contains recipes and ratings crawled from `Allrecipes.com'. It consists of three files. The 'core-data\_recipe.csv' file has all information about recipes such as 'recipe\_id', 'recipe\_name', 'image\_url', 'ingredients', 'cooking\_directions', 'nutritions' as shown in \autoref{fig:raw_recipes_head}. It has $45630$ recipes with $6$ columns as per \autoref{fig:raw_recipes_shape}.
 
 \begin{figure}[H]
 	\centering
@@ -17,7 +17,7 @@ Kaggle is a public platform which provides various types of data for research pu
 	\label{fig:raw_recipes_shape}
 \end{figure}
 
-\noindent The other two files 'core-data-train\_rating.csv' and 'core-data-test\_rating.csv' provide user interactions with recipes. User interaction refers to a record in the file where a user has given a rating to at least one recipe. As showin in \autoref{fig:raw_ratings_head}, user - 5215572 has given ratings to two recipes. These two files are combined into a single file that has all user interactions.  Total user recipe interactions in this merged file are shown in \autoref{fig:original_interactions_shape}.
+\noindent The other two files `core-data-train\_rating.csv' and `core-data-test\_rating.csv' provide user interactions with recipes. User interaction refers to a record in the file where a user has given a rating to at least one recipe. As showin in \autoref{fig:raw_ratings_head}, user - 5215572 has given ratings to two recipes. These two files are combined into a single file that has all user interactions.  Total user recipe interactions in this merged file are shown in \autoref{fig:original_interactions_shape}.
 
 \begin{figure}[H]
 	\centering
@@ -38,7 +38,7 @@ Kaggle is a public platform which provides various types of data for research pu
 A content-based filtering algorithm relies on the contents of the items. In our dataset, recipes are items that are rated by users. To recommend any recipe for a user, it is important to understand the features of the recipe that are relevant for a user. This thesis considers  `Ingredients', `Cook Method', `Calories' and `Diet Labels' features to find similarities between recipes.
 
 \subsubsection{Ingredients Extraction}
-The recipe's data received from Kaggle has the ingredients column in a clean format upto a certain level. To get a single ingredient for each recipe, the `NLTK' library has been used. It tokenizes sentences into words. Raw ingredients data has many irrelevant words for predicting similarity between ingredients such as `white' from `white eggs', `frozen' from `frozen chicken', `thawed' from `thawed rotis', `piece from pork piece'. Such custom keywords are filetered out using a recipe\_stopwords list to make ingredients very specific. The difference between raw ingredients and cleaned ingredients is illustrated in \autoref{fig:raw_ingredients} \autoref{fig:clean_ingredients}. Irrelevant words such as 'thawed' and 'white' present in the first row of the pre-processed ingredients have been removed in post-processed ingredients. On this clean data lemmatization is performed to transform a word into its existing word. Part-of-speech tags considered are `nouns' and `adjectvies'. Example `potatoes' will be transformed to `potato' as show in \autoref{fig:lemma_ingredients}
+The recipe's data received from Kaggle has the ingredients column in a clean format upto a certain level. To get a single ingredient for each recipe, the `NLTK' library has been used. It tokenizes sentences into words. Raw ingredients data has many irrelevant words for predicting similarity between ingredients such as `white' from `white eggs', `frozen' from `frozen chicken', `thawed' from `thawed rotis', `piece from pork piece'. Such custom keywords are filetered out using a recipe\_stopwords list to make ingredients very specific. The difference between raw ingredients and cleaned ingredients is illustrated in \autoref{fig:raw_ingredients} \autoref{fig:clean_ingredients}. Irrelevant words such as `thawed' and `white' present in the first row of the pre-processed ingredients have been removed in post-processed ingredients. On this clean data lemmatization is performed to transform a word into its existing word. Part-of-speech tags considered are `nouns' and `adjectvies'. Example `potatoes' will be transformed to `potato' as show in \autoref{fig:lemma_ingredients}
 
 \begin{singlespace}
 \begin{figure}[H]
@@ -68,7 +68,7 @@ The recipe's data received from Kaggle has the ingredients column in a clean for
 \subsubsection{Cook Method Extraction}
 \label{sec:cook_method}
 Ingredients are most significant in measuring the similarity between recipes but instead of only ingredients, Wang et al. [49] represented the recipes as graphs which are built on ingredients and cooking directions that can be used to easily aggregate dishes. 
-The University of Minnesota has predefined glossary of cooking methods \cite{50} that has $74$ cooking methods such as 'bake', 'steam', 'fry'. Recipes dataset of this thesis has a 'cooking\_direction' column that contains the method of cooking. It is a set of sentences that provides all instructions for a recipe as shown in \autoref{fig:cooking_directions}.
+The University of Minnesota has predefined glossary of cooking methods \cite{50} that has $74$ cooking methods such as `bake', `steam', `fry'. Recipes dataset of this thesis has a `cooking\_direction' column that contains the method of cooking. It is a set of sentences that provides all instructions for a recipe as shown in \autoref{fig:cooking_directions}.
 \begin{singlespace}
 \begin{figure}[H]
 	\centering
@@ -78,7 +78,7 @@ The University of Minnesota has predefined glossary of cooking methods \cite{50}
 \end{figure}
 \end{singlespace}
 
-\noindent To get a cooking method from cooking direction, 'NLTK Processing' is performed on 'cooking\_direction' column.  First step of this processing is to convert the set of instructions into words. Conversion of sentences to words is done using 'NLTK Tokenizer.' Next step is to remove 'stop words' from sentences. In natural language processing, stop words refer to words that do not have meaningful information such as 'a', 'and', 'an', 'the'. These words are considered as noisy data and can be ignored. These stopwords are downloaded from the 'NLTK' library. Result is a list of keywords of cooking methods and ingredients. The common words from this result and predefined glossary of cooking methods are extracted and mapped as cooking methods used in the associated recipe. The list of cooking methods used in recipes is depicted in \autoref{fig:cooking_methods}.
+\noindent To get a cooking method from cooking direction, `NLTK Processing' is performed on `cooking\_direction' column.  First step of this processing is to convert the set of instructions into words. Conversion of sentences to words is done using `NLTK Tokenizer.' Next step is to remove `stop words' from sentences. In natural language processing, stop words refer to words that do not have meaningful information such as `a', `and', `an', `the'. These words are considered as noisy data and can be ignored. These stopwords are downloaded from the `NLTK' library. Result is a list of keywords of cooking methods and ingredients. The common words from this result and predefined glossary of cooking methods are extracted and mapped as cooking methods used in the associated recipe. The list of cooking methods used in recipes is depicted in \autoref{fig:cooking_methods}.
 \begin{singlespace}
 \begin{figure}[H]
 	\centering
@@ -89,7 +89,7 @@ The University of Minnesota has predefined glossary of cooking methods \cite{50}
 \end{singlespace}
 
 \subsubsection{Calories Extraction}
-A calorie is a unit of an energy. Calories in any food refers to the energy people get by consuming food. Recipe dataset has 'nutrition' column. For each recipe, nutrition values are specified with quantity. For example, 'Crispee Cheese twists' recipe has 121 calories as depicted in  \autoref{fig:nutritions}. This information is stored in a nested dictionary. After extracting calorie's information it is stored in the 'calories' column as showin in \autoref{fig:calories}.
+A calorie is a unit of an energy. Calories in any food refers to the energy people get by consuming food. Recipe dataset has `nutrition' column. For each recipe, nutrition values are specified with quantity. For example, `Crispee Cheese twists' recipe has 121 calories as depicted in  \autoref{fig:nutritions}. This information is stored in a nested dictionary. After extracting calorie's information it is stored in the `calories' column as showin in \autoref{fig:calories}.
 \begin{singlespace}
 \begin{figure}[H]
 	\centering
@@ -109,7 +109,7 @@ A calorie is a unit of an energy. Calories in any food refers to the energy peop
 
 \subsubsection{Diet Labels Extraction}
 \label{sec:diet_labels}
-According to U.S. Food and Drug Administration (FDA) \cite{51}, \%DV is the percentage of the Daily Value for each nutrient in a serving of the food. Percentage Daily Value can inform if a serving of food is high or low in a nutrient. The general guide is, 5\% DV or less of a nutrient per serving is considered low and 20\% DV or more of a nutrient per serving is considered high. From this information, recipes are broadly divided into five categories such as \textbf{`highprotein'}, \textbf{`highfiber'}, \textbf{`lowfat'}, \textbf{`lowcarb'}, \textbf{`lowsodium'} and \textbf{`balanced'}. If \%DV value is less than 5\% then recipe will fall under low nutrition label category otherwise in high nutrition label category. For example, \autoref{fig:diet_labels} illustrates that for recipe 'Crispee Cheese Twist', percentage daily value for carbohydrates is $3$ and for sodium is $3$ which is less than 5\%. Hence 'Crispee Cheese Twist' will fall under 'Low-Carb' and 'Low-Sodium' category under column `diet\_labels'.
+According to U.S. Food and Drug Administration (FDA) \cite{51}, \%DV is the percentage of the Daily Value for each nutrient in a serving of the food. Percentage Daily Value can inform if a serving of food is high or low in a nutrient. The general guide is, 5\% DV or less of a nutrient per serving is considered low and 20\% DV or more of a nutrient per serving is considered high. From this information, recipes are broadly divided into five categories such as \textbf{`highprotein'}, \textbf{`highfiber'}, \textbf{`lowfat'}, \textbf{`lowcarb'}, \textbf{`lowsodium'} and \textbf{`balanced'}. If \%DV value is less than 5\% then recipe will fall under low nutrition label category otherwise in high nutrition label category. For example, \autoref{fig:diet_labels} illustrates that for recipe `Crispee Cheese Twist', percentage daily value for carbohydrates is $3$ and for sodium is $3$ which is less than 5\%. Hence `Crispee Cheese Twist' will fall under `Low-Carb' and `Low-Sodium' category under column `diet\_labels'.
 \begin{singlespace}
 \begin{figure}[H]
 	\centering
@@ -121,7 +121,7 @@ According to U.S. Food and Drug Administration (FDA) \cite{51}, \%DV is the perc
 
 \subsubsection{User Information}
 \label{sec:user_info}
-For a user 'height\_in\_inches', 'weight\_in\_lb', 'age' in years, 'gender' and 'activity' attributes are considerd. An activity is divided into 5 categories. 1. Sedentary 2. Lightly Active 3. Moderately Active 4.Very Active 5. Extra Active. The user information is simulated with python script. The height range for an adult is considered from 52 inches to 80 inches. The weight range for an adult is considered from 64 lbs to 175 lbs. The Harris–Benedict equation is used to estimate an individual's basal metabolic rate (BMR). This estimated BMR value multiplied by a number that corresponds to a user's activity level provides the approximate daily kilocalorie intake to maintain current body weight \cite{}. To calculate BMR of male and female, the Harris–Benedict equation is given below.
+For a user `height\_in\_inches', `weight\_in\_lb', `age' in years, `gender' and `activity' attributes are considerd. An activity is divided into 5 categories. 1. Sedentary 2. Lightly Active 3. Moderately Active 4.Very Active 5. Extra Active. The user information is simulated with python script. The height range for an adult is considered from 52 inches to 80 inches. The weight range for an adult is considered from 64 lbs to 175 lbs. The Harris–Benedict equation is used to estimate an individual's basal metabolic rate (BMR). This estimated BMR value multiplied by a number that corresponds to a user's activity level provides the approximate daily kilocalorie intake to maintain current body weight \cite{52}. To calculate BMR of male and female, the Harris–Benedict equation is given below.
 \begin{align}
 BMR (Male) = 66 + (6.3 * Weight\_lb) + (12.9 * Height\_inch) - (6.8 * age) \\
 BMR (Female) = 655 + (4.3 * Weight\_lb) + (4.7 * Height\_inch) - (4.7 * age)
