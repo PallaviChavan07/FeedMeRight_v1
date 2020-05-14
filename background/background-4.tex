@@ -31,19 +31,15 @@ Irrelevant & FP                  & TN                       \\ \hline
 \label{confusion_matrix}
 \end{table}
 \noindent Based on \autoref{confusion_matrix}, precision is calculated as ratio of the relevant items from recommended items to the number of all recommended items. It is given in \autoref{eq:precision}. 
-
 \begin{equation}
 Precision = \frac{TP}{TP + FP} 
 \label{eq:precision}
 \end{equation}
-
 \noindent Based on \autoref{confusion_matrix}, recall is calculated as the ratio of relevant items from recommended items to the number of all relevant items. It is given in \autoref{eq:recall}. 
-
 \begin{equation}
 Recall = \frac{TP}{TP + FN} 
 \label{eq:recall}
 \end{equation}
-
 Larger value of recall and precision implies better recommendations.
 
 \subsection{Accuracy}
@@ -57,7 +53,6 @@ Accuracy = \frac{TP + TN }{TP + TN + FP + FN}
 
 \subsection{Mean Absolute Error (MAE)}
 Mean absolute error used to calculate the average deviation or error generated from predicted ratings and actual ratings \cite{26}.
-
 \begin{equation}
 MAE = \frac{1}{n} \sum_{i=1}^{n}{\vert{Predicted_i - Actual_i} \vert}
 \label{eq:mae}
@@ -66,9 +61,7 @@ MAE = \frac{1}{n} \sum_{i=1}^{n}{\vert{Predicted_i - Actual_i} \vert}
 $Predicted_i$ \textsf{ denotes predicted ratings given by user to the item} $i.$ \\
 $Actual_i$ \textsf{ denotes actual ratings given by user to the item } $i.$ \\
 $n$ \textsf{denotes number of items.}
-
 \noindent With this formula, MAE can calculate the general performance of recommender systems but to compare engines with a different rating scale, we can normalize MAE by dividing by the mean MAE value as shown in \autoref{eq:nmae}. 
-
 \begin{equation}
 NMAE = \frac{MAE} {Rating_{max} - Rating_{min}}
 \label{eq:nmae}
@@ -85,7 +78,6 @@ RMSE = \sqrt{ \frac{1}{n} \sum_{i=1}^{n}{({Predicted_i - Actual_i} ) ^ {2}}}
 $Predicted_i$ \textsf{ denotes predicted ratings given by user to the item} $i.$ \\
 $Actual_i$ \textsf{ denotes actual ratings given by user to the item } $i.$ \\
 $n$ \textsf{denotes number of items.}
-
 \noindent Normalized RMSE is given in \autoref{eq:nrmse}
 \begin{equation}
 NRMSE = \frac{RMSE} {Rating_{max} - Rating_{min}}
@@ -99,7 +91,6 @@ NRMSE = \frac{RMSE} {Rating_{max} - Rating_{min}}
 Mean Reciprocal Rank is one of the rank-aware evaluation metrics.
 It is a retrieval measure that calculates the reciprocal of the rank at which the first relevant document was recommended \cite{27}.
 From the list of generated recommendations, it finds the rank of the first relevant recommended item and computes the reciprocal of that rank. It can be calculated as shown in \autoref{eq:mrr}
-
 \begin{equation}
 MRR(O, U) = \frac{1}{\vert U \vert} \sum_{u \in \epsilon} \frac{1} {k_{u}}
 \label{eq:mrr}
@@ -116,10 +107,8 @@ MAP at k considers the subset of the list recommended by the system while measur
 MAP_{i} = \frac{1}{\vert R_{i} \vert} \sum_{k=1}^{\vert R_{i} \vert} { P( R_{i}[k]) }
 \label{eq:map_at_k}
 \end{equation}
-
 \noindent Where, \\
 $R_{i}$ denotes rating for item $i$. \\
 $k$ denotes rank from 1 to k.\\
 $P$ denotes precision of first relevant item.
-
 \noindent Higher mean precision value implies correct recommendations.

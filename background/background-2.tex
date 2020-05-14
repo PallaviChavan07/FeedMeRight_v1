@@ -229,7 +229,7 @@ M_{k} = U_{k} \times S_{k} \times V_{k}^{T}
 \label{svd1}
 \end{equation}
 
-\noindent Rating prediction for user $u$ for item $i$ is given in \autoref{svd2} \\
+\noindent Rating prediction for user $u$ for item $i$ is given in \autoref{svd2} 
 
 \begin{equation}
 r_{ui} = r_{u} + U_{k} \sqrt{S_{k}^{T} (u)} \times \sqrt{S_k} \times V_{k}^{T}
@@ -241,7 +241,6 @@ r_{ui} = r_{u} + U_{k} \sqrt{S_{k}^{T} (u)} \times \sqrt{S_k} \times V_{k}^{T}
 \subsubsection{Advantages and Disadvantages of collaborative filtering techniques}
 \label{cf_pros_cons}
 Collaborative Filtering technique has major advantages over content-based technique in such domains where there is selection of many features is not necessary. Collaborative filtering has ability to recommend a new item such that even if content of that item is not stored as user's preference in user's profile. It is very successful algorithm but it suffers from some drawbacks \cite{10}.
-\\
 \begin{itemize}
 \item Data Sparsity Problem \\
 Data sparsity problem is a result of lack of availability of information about ratings of items in the dataset. Dataset with huge number of items but only few of them rated by users, leads to a sparse user-item matrix. This problem causes generation of weak recommendations as locating successful neighbors is difficult.
