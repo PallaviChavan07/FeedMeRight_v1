@@ -3,17 +3,16 @@
 \section{Evaluation Metrics for Recommendation Systems}
 \label{sec:eval_metrics}
 
-In this section evaluation metrics that are used to evaluate recommender systems algorithms, are explored. Evaluation can be done in two ways, offline and online evaluation \cite{22,23}. In offline evaluation methods, analysis of collected data is divided into training sets and testing sets in the proportion of 80\% training to 20\% testing. The model of the recommender system is trained on the training dataset and the testing dataset is hidden from the engine. To understand the quality of a recommendation engine, one or more combinations of evaluation metrics are used. There are several methods available to evaluate the performance of the recommender systems \cite{22,24}.
-  
+In this section evaluation metrics that are used to evaluate recommender systems algorithms, are explored. Evaluation can be done in two ways, offline and online evaluation \cite{22,23}. In offline evaluation methods, analysis of collected data can be divided into training sets and testing sets. The dataset used in this thesis is divided into training sets and testing sets in the proportion of 80\% training to 20\% testing. The model of the recommender system is trained on the training dataset and the testing dataset is hidden from the engine. To understand the quality of a recommendation engine, one or more combinations of evaluation metrics are used. There are several methods available to evaluate the performance of the recommender systems \cite{22,24}.
+
 \subsection{Recall and Precision}
 \label{sec:recall_precision}
 Recall and precision are most commonly used metrics to evaluate recommendation engines \cite{25}. These metrics can be explained by a confusion matrix \cite{21} as shown in \autoref{confusion_matrix}. \\
 \noindent
-TP = True Positive denotes all relevant items are recommended by the system.\\
-TN = True Negative denotes all irrelevant items are correctly not recommended by the system.  \\
-FP = False Positive denotes all irrelevant items which are
-incorrectly recommended by the system\\
-FN = False Negative denotes relevant items but system failed to recommend.\\
+TP = True Positive denotes the number of relevant items that are recommended by the system.\\
+TN = True Negative denotes the number of irrelevant items that are correctly not recommended by the system.  \\
+FP = False Positive denotes all irrelevant items which are incorrectly recommended by the system\\
+FN = False Negative denotes relevant items but the system failed to recommend.\\
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
@@ -58,12 +57,13 @@ MAE = \frac{1}{n} \sum_{i=1}^{n}{\vert{Predicted_i - Actual_i} \vert}
 \label{eq:mae}
 \end{equation}
 \noindent Where, \\ 
-$Predicted_i$ \textsf{ denotes predicted ratings given by user to the item} $i.$ \\
-$Actual_i$ \textsf{ denotes actual ratings given by user to the item } $i.$ \\
-$n$ \textsf{denotes number of items.}
+$Predicted_i$ \text{ denotes predicted ratings given by user to the item} $i.$ \\
+$Actual_i$ \text{ denotes actual ratings given by user to the item } $i.$ \\
+$n$ \text{denotes number of items.}
 \noindent With this formula, MAE can calculate the general performance of recommender systems but to compare engines with a different rating scale, we can normalize MAE by dividing by the mean MAE value as shown in \autoref{eq:nmae}. 
 \begin{equation}
-NMAE = \frac{MAE} {Rating_{max} - Rating_{min}}
+%NMAE = \frac{MAE} {Rating_{max} - Rating_{min}}
+NMAE = \frac{MAE} {\frac{1}{n} \sum_{i=1}^{n}{Actual_i}}
 \label{eq:nmae}
 \end{equation}
 
@@ -75,14 +75,9 @@ RMSE = \sqrt{ \frac{1}{n} \sum_{i=1}^{n}{({Predicted_i - Actual_i} ) ^ {2}}}
 \label{eq:rmse}
 \end{equation}
 \noindent Where, \\
-$Predicted_i$ \textsf{ denotes predicted ratings given by user to the item} $i.$ \\
-$Actual_i$ \textsf{ denotes actual ratings given by user to the item } $i.$ \\
-$n$ \textsf{denotes number of items.}
-\noindent Normalized RMSE is given in \autoref{eq:nrmse}
-\begin{equation}
-NRMSE = \frac{RMSE} {Rating_{max} - Rating_{min}}
-\label{eq:nrmse}
-\end{equation}
+$Predicted_i$ \text{ denotes predicted ratings given by user to the item} $i.$ \\
+$Actual_i$ \text{ denotes actual ratings given by user to the item } $i.$ \\
+$n$ \text{denotes number of items.}
 
 \subsection{Mean Reciprocal Rank}
 
@@ -96,17 +91,18 @@ MRR(O, U) = \frac{1}{\vert U \vert} \sum_{u \in \epsilon} \frac{1} {k_{u}}
 \noindent Where, \\
 $k_{u}$ denotes the first relevant recommended item for user u. \\
 $U$  denotes the number of users. \\
-MRR focuses on the first relevant item of the recommended list. Higher reciprocal rank implies a better recommendation engine.
+$\epsilon$ denotes the number of recommended items. \\ 
+MRR focuses on the first relevant item of the recommended list. A higher reciprocal rank implies a better recommendation engine.
 
 
 \subsection{Mean Average Precision at cutoff k (MAP at k)}
-MAP at k considers the subset of the list recommended by the system while measuring precision. It does not concern about ordering the items in the list. For each user for each relevant item, it computes the precision of the list through that item. After that it average sub-list precisions. Mathematically it is show in \autoref{eq:map_at_k}
+MAP at k considers the subset of the list recommended by the system while measuring precision. It does not concern about ordering the items in the list. For each user for each relevant item, it computes the precision of the list through that item. After that it average sub-list precisions. This sub-list can be indexed by k. Mathematically it is show in \autoref{eq:map_at_k}
 \begin{equation}
 MAP_{i} = \frac{1}{\vert R_{i} \vert} \sum_{k=1}^{\vert R_{i} \vert} { P( R_{i}[k]) }
 \label{eq:map_at_k}
 \end{equation}
 \noindent Where, \\
 $R_{i}$ denotes rating for item $i$. \\
-$k$ denotes rank from 1 to k.\\
-$P$ denotes precision of first relevant item.
-\noindent Higher mean precision value implies correct recommendations.
+$k$ denotes rank of recommended item from 1 to k.\\ 
+$P$ denotes the precision of the first relevant item.
+\noindent This calculation is done on the subset of recommendations from rank 1 through k. A higher mean precision value implies correct recommendations.
