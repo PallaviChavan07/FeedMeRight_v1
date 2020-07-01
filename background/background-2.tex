@@ -36,21 +36,22 @@ In the Content-based method algorithm, user preference is considered based on th
 
 \noindent 
 The architecture of content based model highlights the process in \autoref{fig:contentbased_architecture}. 
-
-
-\begin{itemize}
-\item \textbf{Content Analyzer} 
+\\
+\noindent \textbf{Content Analyzer}
 \\
 When information has no exact structure, the pre-processing step is necessary to extract relevant features from that document. Content analyzer analyzes items such as recipes, documents, books, product descriptions to extract and present the content of items. Information source contains data in the raw format. Each data item coming from an information source is pre-processed and analyzed by feature extraction techniques to transform original information into a more structured format. The output of the content analyzer is the input for the profile learner and filtering component.
-
-\item \textbf{Profile Learner} 
+\\
+%\item \textbf{Profile Learner} 
+\noindent \textbf{Profile Learner}
 \\
 Profile learner constructs a user profile by collecting user preference data. The generalization strategy is applied to the collected data using machine learning techniques. For example, the profile learner of a movie recommender can implement a relevance feedback method in which rating on a scale of 0 to 5 is considered. Rating value above 3 is considered as a positive rating implies likes for the movie and rating value below 3 considered as negative rating implies dislike for a movie. The learning technique combines liked and disliked movies by the user and the vector of positive and negative examples into a vector that represents user profile. 
-
-\item \textbf{Filtering Component}
+\\
+%\item \textbf{Filtering Component}
+\noindent \textbf{Filtering Component}
 \\
 The filtering component uses the user's profile to find matching items from the items' data set. The items are matching with a user's data profile are decided by calculating the similarity between a user's data profile and item vectors. A list of potentially interesting items is recommended by the filtering component. 
-\end{itemize}
+\\
+%\end{itemize}
 \noindent
 In a content-based algorithm, each user's information can be stored in vector form which contains past behavior of the user. This vector is known as user vector or user profile. All the information about an item is stored in an item vector or item profile which contains all the details about item-specific attributes. Based on the similarity score between the user profile and item profile most relevant items are recommended to the user. The calculation of user or item vector is discussed in section \nameref{vector_space_model}.
 
@@ -241,15 +242,24 @@ r_{ui} = r_{u} + U_{k} \sqrt{S_{k}^{T} (u)} \cdot \sqrt{S_k} \cdot V_{k}^{T}
 \subsubsection{Advantages and Disadvantages of collaborative filtering techniques}
 \label{cf_pros_cons}
 Collaborative Filtering technique has major advantages over content-based technique in such domains where there is a selection of many features is not necessary. Collaborative filtering has the ability to recommend a new item such that even if the content of that item is not stored as a user's preference in the user's profile. It is a very successful algorithm but it suffers from some drawbacks \cite{10}.
-\begin{itemize}
-\item Data Sparsity Problem \\
+%\begin{itemize}
+%\item Data Sparsity Problem \\
+\\
+\noindent \textbf{Data Sparsity Problem}
+\\
 Data sparsity problem is a result of a lack of availability of information about ratings of items in the dataset. A dataset with a huge number of items but only a few of them rated by users leads to a sparse user-item matrix. This problem causes the generation of weak recommendations as locating successful neighbors is difficult.
-\item Cold Start Problem \\
+%\item Cold Start Problem \\
+\\
+\noindent \textbf{Cold Start Problem}
+\\
 Cold-start is a situation where the system does not have enough information about a new user or a new item in order to make relevant predictions. The user profile or item profile will be empty as a user has not rated any item so, the preference of a user will be unknown to the system. In Collaborative filtering, the similarity between users is considered based on a user's ratings.
-\item Scalability \\
+%\item Scalability \\
+\\
+\noindent \textbf{Scalability}
+\\
 The nearest neighbor algorithm requires high computations. It grows with a number of users and number of items in the system. Any web-based system which has a huge number of items and users may suffer from high scalability.
 
-\end{itemize}
+%\end{itemize}
 
 \subsection{Hybrid Filtering}
 Content-based filtering technique do not involve the opinions of all users while recommending items. It has limitations to recommend only those items that are in the range of user's taste as discussed in the \nameref{sec:cb}. However, collaborative filtering cannot give prediction to items that have never been rated as discussed in the \nameref{sec:cf}. Hybrid filtering techniques uses a combination of different recommendation techniques to overcome limitations of pure recommendation techniques and to improve performance \cite{37,38}. The performance of recommendation techniques can be measured by different evaluation metrics as discussed in section \nameref{sec:eval_metrics}. Many researchers have combined content-based and collaborative filtering techniques to gain better results. The idea behind combining different recommendation techniques is that the resultant algorithm will provide more accurate and effective recommendations than any single algorithm \cite{39}. Burk \cite{40} has categorized hybrid techniques in different types. One of them is weighted hybridization.\\
